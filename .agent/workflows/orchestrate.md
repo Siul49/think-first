@@ -1,0 +1,112 @@
+---
+description: Automated CLI-based parallel agent execution with preflight, per-agent verify gates, and postflight reporting
+---
+
+# MANDATORY RULES - VIOLATION IS FORBIDDEN
+
+- Response language follows `language` in `.agent/config/user-preferences.yaml` when configured.
+- NEVER skip steps. Execute from Step 0 in order and report step completion.
+- Use MCP tools for code/memory exploration whenever available.
+- Read required docs before starting.
+
+---
+
+## Step 0: Preparation (DO NOT SKIP)
+
+1. Read `.agent/skills/workflow-guide/SKILL.md` and confirm core rules.
+2. Read `.agent/skills/_shared/context-loading.md` for resource loading strategy.
+3. Read `.agent/skills/_shared/skill-routing.md` for routing constraints.
+
+---
+
+## Step 1: Load or Create Plan
+
+- If `.agent/plan.json` exists: load it.
+- If not: ask the user to run planning first or provide executable task breakdown.
+- Do not execute without a plan.
+
+---
+
+## Step 2: Initialize Session
+
+1. Load `.agent/config/user-preferences.yaml`.
+2. Generate session ID (`session-YYYYMMDD-HHMMSS`).
+3. Create memory entries for `orchestrator-session.md` and `task-board.md`.
+4. Set session status to RUNNING.
+
+---
+
+## Step 3: Run Preflight Guard
+
+Run automation preflight before any agent spawn:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .agent/skills/_shared/preflight.ps1 -Workspace {workspace} -AgentType orchestrator
+```
+
+If preflight fails, stop execution and report why.
+
+---
+
+## Step 4: Spawn Agents by Priority Tier
+
+For each priority tier (P0, P1, ...):
+
+- Spawn agents using project CLI conventions.
+- Keep same-priority tasks parallel.
+- Never exceed configured max parallel workers.
+- Update task board status after each spawn.
+
+---
+
+## Step 5: Monitor Progress
+
+- Poll process health and progress memories.
+- Update task board statuses and retry counters.
+- Capture failures with concise error context.
+
+---
+
+## Step 6: Verify Completed Agents
+
+For each completed agent, run verification gate:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .agent/skills/_shared/verify.ps1 -AgentType {agent-type} -Workspace {workspace}
+```
+
+- PASS (`0`): accept agent result.
+- FAIL (`1`): retry with verify output attached.
+- Max retries: 2.
+
+---
+
+## Step 7: Collect Results
+
+1. Read `result-{agent}.md` outputs.
+2. Build integrated summary (done, failed, pending).
+3. Record final task board state in memory.
+
+---
+
+## Step 8: Run Postflight Report
+
+Run automation postflight after collection:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .agent/skills/_shared/postflight.ps1 -Workspace {workspace} -AgentType orchestrator
+```
+
+Attach generated report path in final response.
+
+---
+
+## Step 9: Final Report
+
+Return:
+
+- Completed tasks
+- Failed tasks and retry history
+- Verification outcomes
+- Postflight report path
+- Recommended next action

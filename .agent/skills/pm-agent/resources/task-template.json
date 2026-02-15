@@ -1,0 +1,11 @@
+{
+  "epic": "sample-epic",
+  "tasks": [
+    {
+      "id": "T1",
+      "priority": "P0",
+      "owner": "backend-agent",
+      "description": "Implement API contract"
+    }
+  ]
+}
