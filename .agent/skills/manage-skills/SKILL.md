@@ -14,7 +14,7 @@ Keep `.agent/skills` consistent and executable.
 1. Detect changed areas not covered by existing verify skills.
 2. Detect stale references to missing files.
 3. Propose update/create/delete actions for skills.
-4. Keep `verify-implementation` and `_shared/skill-routing.md` synchronized.
+4. Keep `verify-implementation`, `_shared/skill-routing.md`, and registry tables synchronized.
 
 ## When to run
 
@@ -66,6 +66,7 @@ Run:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .agent/skills/manage-skills/scripts/validate-skill-links.ps1
+powershell -ExecutionPolicy Bypass -File .agent/skills/manage-skills/scripts/validate-verify-registry.ps1
 ```
 
 ### Step 6: Report
@@ -84,3 +85,4 @@ Return:
 | `.agent/skills/verify-implementation/SKILL.md` | Verify orchestration skill list |
 | `.agent/skills/_shared/skill-routing.md` | Routing/skills registry |
 | `.agent/skills/manage-skills/scripts/validate-skill-links.ps1` | Broken reference detector |
+| `.agent/skills/manage-skills/scripts/validate-verify-registry.ps1` | Verify registry sync detector |

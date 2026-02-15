@@ -1,0 +1,35 @@
+name: agent-guardrails
+
+on:
+  pull_request:
+    paths:
+      - ".agent/**"
+      - ".github/workflows/agent-guardrails.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - ".agent/**"
+      - ".github/workflows/agent-guardrails.yml"
+
+jobs:
+  verify-agent-guardrails:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate skill links
+        shell: pwsh
+        run: |
+          pwsh -NoProfile -ExecutionPolicy Bypass -File .agent/skills/manage-skills/scripts/validate-skill-links.ps1
+
+      - name: Validate verify registry sync
+        shell: pwsh
+        run: |
+          pwsh -NoProfile -ExecutionPolicy Bypass -File .agent/skills/manage-skills/scripts/validate-verify-registry.ps1 -RepoRoot $PWD
+
+      - name: Run shared verify gate
+        shell: pwsh
+        run: |
+          pwsh -NoProfile -ExecutionPolicy Bypass -File .agent/skills/_shared/verify.ps1 -AgentType ci -Workspace $PWD

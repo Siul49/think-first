@@ -20,6 +20,10 @@ Execute `verify-*` skills consistently and summarize pass/fail status with actio
 
 ## Execution list
 
+Auto-discovery rule (source of truth):
+- Include every directory under `.agent/skills/verify-*` except `verify-implementation`.
+- Keep the table below synchronized with discovered skills.
+
 | # | Skill | Description |
 |---|------|-------------|
 | 1 | `verify-observability` | Validate Trace ID and logging contracts |
@@ -30,7 +34,7 @@ Execute `verify-*` skills consistently and summarize pass/fail status with actio
 ### Step 1: Select scope
 
 - If an argument is provided, run only that verify skill.
-- Otherwise run all skills in the execution list.
+- Otherwise run all auto-discovered verify skills and confirm they match the execution list table.
 
 ### Step 2: Execute each verify skill
 
@@ -70,3 +74,4 @@ After fixes, re-run only failed verify skills.
 |------|---------|
 | `.agent/skills/manage-skills/SKILL.md` | Verify skill registry maintenance |
 | `.agent/skills/_shared/skill-routing.md` | Routing and skills summary |
+| `.agent/skills/manage-skills/scripts/validate-verify-registry.ps1` | Registry synchronization gate |

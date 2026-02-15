@@ -81,6 +81,21 @@ powershell -ExecutionPolicy Bypass -File .agent/skills/_shared/verify.ps1 -Agent
 
 ---
 
+## Step 6.5: Validate Verify Registry Sync
+
+Before collecting results, enforce verify skill synchronization:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .agent/skills/manage-skills/scripts/validate-verify-registry.ps1 -RepoRoot {workspace}
+```
+
+If it fails, stop and run `manage-skills` to sync:
+- `verify-implementation` execution list
+- `manage-skills` registered verify table
+- `_shared/skill-routing.md` verify summary
+
+---
+
 ## Step 7: Collect Results
 
 1. Read `result-{agent}.md` outputs.

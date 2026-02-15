@@ -37,8 +37,18 @@ function Invoke-Check {
         Write-Log "[verify] pass: $Label"
     } catch {
         $script:checkFailed++
-        Write-Log "[verify] fail: $Label"
+        Write-Log "[verify] fail: $Label :: $($_.Exception.Message)"
     }
+}
+
+$skillLinkValidator = Join-Path $repoRoot ".agent/skills/manage-skills/scripts/validate-skill-links.ps1"
+if (Test-Path $skillLinkValidator) {
+    Invoke-Check "validate skill links" { & $skillLinkValidator | Out-Null }
+}
+
+$verifyRegistryValidator = Join-Path $repoRoot ".agent/skills/manage-skills/scripts/validate-verify-registry.ps1"
+if (Test-Path $verifyRegistryValidator) {
+    Invoke-Check "validate verify registry sync" { & $verifyRegistryValidator -RepoRoot $repoRoot | Out-Null }
 }
 
 if ((Test-Path (Join-Path $Workspace "package.json")) -and (Get-Command npm -ErrorAction SilentlyContinue)) {

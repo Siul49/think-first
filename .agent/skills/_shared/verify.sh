@@ -35,6 +35,15 @@ run_check() {
   fi
 }
 
+if command -v pwsh >/dev/null 2>&1; then
+  if [[ -f "$repo_root/.agent/skills/manage-skills/scripts/validate-skill-links.ps1" ]]; then
+    run_check "validate skill links" pwsh -NoProfile -ExecutionPolicy Bypass -File "$repo_root/.agent/skills/manage-skills/scripts/validate-skill-links.ps1"
+  fi
+  if [[ -f "$repo_root/.agent/skills/manage-skills/scripts/validate-verify-registry.ps1" ]]; then
+    run_check "validate verify registry sync" pwsh -NoProfile -ExecutionPolicy Bypass -File "$repo_root/.agent/skills/manage-skills/scripts/validate-verify-registry.ps1" -RepoRoot "$repo_root"
+  fi
+fi
+
 if [[ -f "$workspace/package.json" ]] && command -v npm >/dev/null 2>&1; then
   run_check "npm lint --if-present" npm --prefix "$workspace" run lint --if-present
   run_check "npm test --if-present" npm --prefix "$workspace" run test --if-present
