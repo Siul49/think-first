@@ -13,6 +13,11 @@ Reusable Codex skill bundle for projects using `.agent` workflows.
 powershell -ExecutionPolicy Bypass -File scripts/install-to-project.ps1 -TargetPath "C:\path\to\project" -ApplyLocalIgnore -SetSkipWorktree
 ```
 
+## One-line update (pull latest + install)
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/sync-project.ps1 -TargetPath "C:\path\to\project" -ApplyLocalIgnore -SetSkipWorktree
+```
+
 ## What install script does
 1. Copies `.agent` assets into target project (excluding `.agent/reports`, `.agent/plan.json`).
 2. Adds local-only ignore rules into `.git/info/exclude` (including `.agent/`).
