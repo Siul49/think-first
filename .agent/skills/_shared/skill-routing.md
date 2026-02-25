@@ -19,28 +19,28 @@ Before any execution, resolve and announce relevant skills for the current user 
 
 | User Request Keywords | Primary Skill | Notes |
 |----------------------|---------------|-------|
-| API, endpoint, REST, GraphQL, database, migration | **backend-agent** | |
-| auth, JWT, login, register, password | **backend-agent** | Auth UI can be delegated to frontend-agent |
-| UI, component, page, form, screen (web) | **frontend-agent** | |
-| style, Tailwind, responsive, CSS | **frontend-agent** | |
-| mobile, iOS, Android, Flutter, React Native, app | **mobile-agent** | |
-| offline, push notification, camera, GPS | **mobile-agent** | |
-| debugger, fix error, root cause, reproduce failure, hotfix | **debug-agent** | Focused-debug mode |
-| bug, error, crash, broken, slow | **debug-agent** | Full-debug mode |
-| reviewer, review request, code review, audit, risk check | **qa-agent** | Focused-review mode |
-| review, security, performance | **qa-agent** | Full-qa mode |
-| accessibility, WCAG, a11y | **qa-agent** | |
-| plan, breakdown, task, sprint | **pm-agent** | |
-| verify, validation, compliance, implementation check | **verify-implementation** | Run cross-skill verification after implementation |
-| trace id, observability, log masking, middleware chain | **verify-observability** | Validate tracing/logging contracts and middleware wiring |
-| room parser, room collection, room pipeline, dto alias | **verify-room-pipeline** | Validate room data pipeline consistency |
-| manage-skills, skill maintenance, verification skill setup | **manage-skills** | Maintain and evolve verify skills for this repo |
-| project customization, customize verify skill, skill bootstrap, 스킬 커스터마이징 | **project-customizer** | Generate project-fit verify skills from config |
-| project fit orchestrator, 병렬 스킬 실행, one-skill parallel, project fit runner | **project-fit-orchestrator** | One entrypoint to run project-fit verify skills in parallel |
-| preflight, postflight, workflow automation, guardrail, hook migration | **orchestrator** | Uses `_shared/preflight.ps1`, `_shared/verify.ps1`, `_shared/postflight.ps1` |
-| automatic, parallel, orchestrate | **orchestrator** | |
-| workflow, guide, manual, step-by-step | **workflow-guide** | |
-| commit, save changes, conventional commit | **commit** | Commit workflow and message policy |
+| API, endpoint, REST, GraphQL, database, migration | **⚙️ 백엔드_엔지니어** | |
+| auth, JWT, login, register, password | **⚙️ 백엔드_엔지니어** | Auth UI can be delegated to 🎨 프론트엔드_엔지니어 |
+| UI, component, page, form, screen (web) | **🎨 프론트엔드_엔지니어** | |
+| style, Tailwind, responsive, CSS | **🎨 프론트엔드_엔지니어** | |
+| mobile, iOS, Android, Flutter, React Native, app | **📱 모바일_엔지니어** | |
+| offline, push notification, camera, GPS | **📱 모바일_엔지니어** | |
+| debugger, fix error, root cause, reproduce failure, hotfix | **🐛 디버깅_해결사** | Focused-debug mode |
+| bug, error, crash, broken, slow | **🐛 디버깅_해결사** | Full-debug mode |
+| reviewer, review request, code review, audit, risk check | **🔎 QA_검수자** | Focused-review mode |
+| review, security, performance | **🔎 QA_검수자** | Full-qa mode |
+| accessibility, WCAG, a11y | **🔎 QA_검수자** | |
+| plan, breakdown, task, sprint | **💡 기획자_PM** | |
+| verify, validation, compliance, implementation check | **✅ 검증_파이프라인_구현** | Run cross-skill verification after implementation |
+| trace id, observability, log masking, middleware chain | **✅ 검증_파이프라인_관측성** | Validate tracing/logging contracts and middleware wiring |
+| room parser, room collection, room pipeline, dto alias | **✅ 검증_파이프라인_데이터** | Validate room data pipeline consistency |
+| manage-skills, skill maintenance, verification skill setup | **🗂️ 스킬_관리자** | Maintain and evolve verify skills for this repo |
+| project customization, customize verify skill, skill bootstrap, 스킬 커스터마이징 | **🚀 프로젝트_커스터마이저** | Generate project-fit verify skills from config |
+| project fit orchestrator, 병렬 스킬 실행, one-skill parallel, project fit runner | **🎶 맞춤형_총괄_조율자** | One entrypoint to run project-fit verify skills in parallel |
+| preflight, postflight, workflow automation, guardrail, hook migration | **🎼 총괄_조율자** | Uses `_shared/preflight.ps1`, `_shared/verify.ps1`, `_shared/postflight.ps1` |
+| automatic, parallel, orchestrate | **🎼 총괄_조율자** | |
+| workflow, guide, manual, step-by-step | **📖 워크플로우_가이드** | |
+| commit, save changes, conventional commit | **📦 커밋_담당자** | Commit workflow and message policy |
 
 ---
 

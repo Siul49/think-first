@@ -35,7 +35,7 @@ powershell -ExecutionPolicy Bypass -File .agent/skills/_shared/ensure-big-task-d
 
 ## Step 1: Analyze Requirements
 
-Analyze the user's request and identify involved domains (frontend, backend, mobile, QA).
+Analyze the user's request and identify involved domains (🎨 프론트엔드_엔지니어, ⚙️ 백엔드_엔지니어, 📱 모바일_엔지니어, 🔎 QA_검수자).
 
 - Single domain: suggest using the specific agent directly.
 - Multiple domains: proceed to Step 2.
@@ -44,10 +44,10 @@ Analyze the user's request and identify involved domains (frontend, backend, mob
 
 ---
 
-## Step 2: Run PM Agent for Task Decomposition
+## Step 2: Run 💡 기획자_PM for Task Decomposition
 
 // turbo
-Activate PM Agent to:
+Activate 💡 기획자_PM to:
 
 1. Analyze requirements.
 2. Define API contracts.
@@ -59,7 +59,7 @@ Activate PM Agent to:
 
 ## Step 3: Review Plan with User
 
-Present the PM Agent's task breakdown to the user:
+Present the 💡 기획자_PM's task breakdown to the user:
 
 - Priorities (P0, P1, P2)
 - Agent assignments
@@ -75,8 +75,8 @@ Spawn agents using CLI for each task:
 
 ```bash
 # Example: spawn backend and frontend in parallel
-oh-my-ag agent:spawn backend "task description" session-id ./backend &
-oh-my-ag agent:spawn frontend "task description" session-id ./frontend &
+oh-my-ag agent:spawn "⚙️ 백엔드_엔지니어" "task description" session-id ./backend &
+oh-my-ag agent:spawn "🎨 프론트엔드_엔지니어" "task description" session-id ./frontend &
 wait
 ```
 
@@ -99,9 +99,9 @@ powershell -ExecutionPolicy Bypass -File .agent/skills/_shared/ensure-big-task-d
 
 ---
 
-## Step 6: Run QA Agent Review
+## Step 6: Run 🔎 QA_검수자 Review
 
-After all implementation agents complete, spawn QA Agent to review all deliverables:
+After all implementation agents complete, spawn 🔎 QA_검수자 to review all deliverables:
 
 - Security (OWASP Top 10)
 - Performance
@@ -112,9 +112,9 @@ After all implementation agents complete, spawn QA Agent to review all deliverab
 
 ## Step 7: Address Issues and Iterate
 
-If QA finds CRITICAL or HIGH issues:
+If 🔎 QA_검수자 finds CRITICAL or HIGH issues:
 
-1. Re-spawn the responsible agent with QA findings.
+1. Re-spawn the responsible agent with 🔎 QA_검수자 findings.
 2. Repeat Steps 5-7.
 3. Continue until all critical issues are resolved.
 4. Use memory write tool to record final results.

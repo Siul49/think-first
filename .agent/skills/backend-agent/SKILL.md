@@ -1,5 +1,5 @@
 ---
-name: backend-agent
+name: ⚙️ 백엔드_엔지니어
 description: Backend specialist for APIs, databases, authentication using FastAPI with clean architecture (Repository/Service/Router pattern)
 ---
 

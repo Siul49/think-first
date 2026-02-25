@@ -88,7 +88,7 @@ powershell -ExecutionPolicy Bypass -File .agent/skills/_shared/verify.ps1 -Agent
 
 - PASS (`0`): accept agent result.
 - FAIL (`1`): retry with verify output attached.
-- Max retries: 2.
+- Max retries: 2. If it fails after 2 retries, STOP and **request user intervention**. Do not proceed.
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: orchestrator
+name: 🎼 총괄_조율자
 description: Automated multi-agent orchestrator that coordinates planning, parallel execution, verification, and reporting with shared memory
 ---
 

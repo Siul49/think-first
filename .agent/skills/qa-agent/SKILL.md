@@ -1,5 +1,5 @@
 ---
-name: qa-agent
+name: 🔎 QA_검수자
 description: Quality assurance specialist with two modes: full QA audit and focused reviewer mode for findings-first code review.
 ---
 

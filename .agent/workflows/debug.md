@@ -8,7 +8,7 @@ description: Structured bug diagnosis and fixing workflow — reproduce, diagnos
 - **NEVER skip steps.** Execute from Step 1 in order.
 - **You MUST use MCP tools throughout the workflow.**
   - Use code analysis tools (`find_symbol`, `find_referencing_symbols`, `search_for_pattern`) for bug investigation — NOT raw file reads or grep.
-  - Use memory write tool to record debugging results.
+  - Use memory tools (write/edit) to record results.
   - Memory path: configurable via `memoryConfig.basePath` (default: `.serena/memories`)
   - Tool names: configurable via `memoryConfig.tools` in `mcp.json`
   - MCP tools are the primary interface for all code exploration.

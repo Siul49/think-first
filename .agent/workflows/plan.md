@@ -48,7 +48,7 @@ Design API contracts between frontend/mobile and backend. Per endpoint:
 
 // turbo
 Break down the project into actionable tasks. Each task must have:
-- Assigned agent (frontend/backend/mobile/qa/debug)
+- Assigned agent (🎨 프론트엔드_엔지니어/⚙️ 백엔드_엔지니어/📱 모바일_엔지니어/🔎 QA_검수자/🐛 디버깅_해결사)
 - Title, acceptance criteria
 - Priority (P0-P3), dependencies
 

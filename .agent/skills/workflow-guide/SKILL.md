@@ -1,5 +1,5 @@
 ---
-name: workflow-guide
+name: 📖 워크플로우_가이드
 description: Guide for coordinating PM, Frontend, Backend, Mobile, and QA agents on complex projects via CLI
 ---
 

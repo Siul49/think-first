@@ -1,5 +1,5 @@
 ---
-name: project-customizer
+name: 🚀 프로젝트_커스터마이저
 description: Create or update project-specific verify skills from a JSON config, then synchronize verify-implementation, manage-skills registry, and skill-routing in one run. Use when the user wants "customize skill and just run it".
 ---
 

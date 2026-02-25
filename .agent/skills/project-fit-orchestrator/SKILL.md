@@ -1,5 +1,5 @@
 ---
-name: project-fit-orchestrator
+name: 🎶 맞춤형_총괄_조율자
 description: Run project-fit customization and execute multiple verify skills in parallel from one entrypoint. Use when the user wants one skill execution that fans out into parallel validation tasks and returns an integrated report.
 ---
 

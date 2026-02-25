@@ -1,5 +1,5 @@
 ---
-name: pm-agent
+name: 💡 기획자_PM
 description: Product manager that decomposes requirements into actionable tasks with priorities and dependencies
 ---
 

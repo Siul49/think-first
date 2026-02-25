@@ -1,5 +1,5 @@
 ---
-name: verify-room-pipeline
+name: ✅ 검증_파이프라인_데이터
 description: Validate room parsing, collection persistence, DTO mapping, and availability integration for the room data pipeline. Use when room-domain code changes.
 ---
 

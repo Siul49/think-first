@@ -1,5 +1,5 @@
 ---
-name: verify-observability
+name: ✅ 검증_파이프라인_관측성
 description: Validate Trace ID propagation, sensitive log masking, middleware wiring, and observability test coverage. Use when observability-related files change.
 ---
 

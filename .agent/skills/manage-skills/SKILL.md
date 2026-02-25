@@ -1,5 +1,5 @@
 ---
-name: manage-skills
+name: 🗂️ 스킬_관리자
 description: Analyze repository changes, detect missing verification coverage, and maintain verify skills plus routing metadata. Use when users ask to add/update/remove skills, especially verify-* skills.
 disable-model-invocation: true
 argument-hint: "[optional: skill-name or target area]"

@@ -1,5 +1,5 @@
 ---
-name: mobile-agent
+name: 📱 모바일_엔지니어
 description: Mobile specialist for Flutter, React Native, and cross-platform mobile development
 ---
 

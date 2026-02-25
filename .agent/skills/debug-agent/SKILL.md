@@ -1,5 +1,5 @@
 ---
-name: debug-agent
+name: 🐛 디버깅_해결사
 description: Bug diagnosis and fixing specialist with two modes: full debugging and fast reproducible hotfix flow.
 ---
 

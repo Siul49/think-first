@@ -1,5 +1,5 @@
 ---
-name: commit
+name: 📦 커밋_담당자
 description: Create git commits following Conventional Commits specification with project-specific branch naming rules
 ---
 

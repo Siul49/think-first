@@ -1,5 +1,5 @@
 ---
-name: verify-implementation
+name: ✅ 검증_파이프라인_구현
 description: Run all registered verify skills in sequence and produce a consolidated validation report. Use after feature implementation, before PR, or during final review.
 disable-model-invocation: true
 argument-hint: "[optional: verify-skill-name]"

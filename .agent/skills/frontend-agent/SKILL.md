@@ -1,5 +1,5 @@
 ---
-name: frontend-agent
+name: 🎨 프론트엔드_엔지니어
 description: Frontend specialist for React, Next.js, TypeScript with FSD-lite architecture, shadcn/ui, and design system alignment
 ---
 

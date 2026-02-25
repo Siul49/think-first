@@ -28,28 +28,23 @@ Check each CLI installation:
 
 ```bash
 which gemini && gemini --version
-which claude && claude --version
-which codex && codex --version
 ```
 
 Display results:
 
 ```
 🔍 CLI Installation Status
-┌─────────┬───────────┬─────────────┐
-│ CLI     │ Status    │ Version     │
-├─────────┼───────────┼─────────────┤
-│ gemini  │ ✅ Installed │ v2.1.0   │
-│ claude  │ ✅ Installed │ v1.0.30  │
-│ codex   │ ❌ Not Found │ -        │
-└─────────┴───────────┴─────────────┘
+┌─────────────┬─────────────┬─────────────┐
+│ Environment │ Status      │ Version     │
+├─────────────┼─────────────┼─────────────┤
+│ gemini      │ ✅ Installed │ v2.1.0   │
+│ antigravity │ ✅ Native   │ -        │
+└─────────────┴─────────────┴─────────────┘
 ```
 
 Provide installation guide for missing CLIs:
 
-- **gemini**: `npm install -g @anthropic-ai/gemini-cli`
-- **claude**: `npm install -g @anthropic-ai/claude-code`
-- **codex**: `npm install -g @openai/codex-cli`
+- **gemini**: `npm install -g @google/gemini-cli`
 
 ---
 
@@ -58,8 +53,6 @@ Provide installation guide for missing CLIs:
 1. Check `.agent/mcp.json` existence and configuration
 2. Check MCP settings for each CLI:
    - Gemini CLI: `~/.gemini/settings.json`
-   - Claude CLI: `~/.claude.json` or `--mcp-config`
-   - Codex CLI: `~/.codex/config.toml`
    - Antigravity IDE: `~/.gemini/antigravity/mcp_config.json`
 3. Test Serena MCP connection
 
@@ -71,9 +64,7 @@ Display results:
 │ Environment     │ MCP Config │ Server              │
 ├─────────────────┼────────────┼─────────────────────┤
 │ gemini CLI      │ ✅ Set     │ serena              │
-│ claude CLI      │ ✅ Set     │ serena              │
 │ Antigravity IDE │ ⚠️ Check   │ see Step 3.1        │
-│ codex CLI       │ ❌ Not Set │ -                   │
 └─────────────────┴────────────┴─────────────────────┘
 ```
 
@@ -189,15 +180,15 @@ serena-mcp-server --port 12341
    ┌──────────┬─────────┐
    │ Agent    │ CLI     │
    ├──────────┼─────────┤
-   │ frontend │ gemini  │
-   │ backend  │ gemini  │
-   │ mobile   │ gemini  │
-   │ pm       │ gemini  │
-   │ qa       │ gemini  │
-   │ debug    │ gemini  │
+   │ 🎨 프론트엔드_엔지니어  │ gemini  │
+   │ ⚙️ 백엔드_엔지니어   │ gemini  │
+   │ 📱 모바일_엔지니어   │ gemini  │
+   │ 💡 기획자_PM        │ gemini  │
+   │ 🔎 QA_검수자       │ gemini  │
+   │ 🐛 디버깅_해결사     │ gemini  │
    └──────────┴─────────┘
 
-   Do you want to change? (e.g., "backend to codex", "pm to claude")
+   Do you want to change? (e.g., "⚙️ 백엔드_엔지니어 to gemini", "💡 기획자_PM to antigravity")
    ```
 
 3. Update `.agent/config/user-preferences.yaml` if changes requested
@@ -212,16 +203,16 @@ serena-mcp-server --port 12341
 📝 Configuration Summary:
 - Response Language: English (en)
 - Timezone: UTC
-- Installed CLIs: gemini ✅, claude ✅, codex ❌
+- Installed CLIs: gemini ✅, antigravity ✅
 - MCP Status: Configured
 
 📋 Agent-CLI Mapping:
-- frontend → gemini
-- backend  → gemini
-- mobile   → gemini
-- pm       → gemini
-- qa       → gemini
-- debug    → gemini
+- 🎨 프론트엔드_엔지니어 → gemini
+- ⚙️ 백엔드_엔지니어    → gemini
+- 📱 모바일_엔지니어    → gemini
+- 💡 기획자_PM         → gemini
+- 🔎 QA_검수자        → gemini
+- 🐛 디버깅_해결사      → gemini
 
 🚀 Get Started:
 - /plan: Create project plan
