@@ -1,0 +1,11 @@
+{
+  "run_customizer_first": true,
+  "customization_config_paths": [
+    ".codex/project-customization.json"
+  ],
+  "verify_skill_names": [
+    "verify-observability",
+    "verify-room-pipeline"
+  ],
+  "report_path": ".codex/reports/project-fit-orchestrator.md"
+}

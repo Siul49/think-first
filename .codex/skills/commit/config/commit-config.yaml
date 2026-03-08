@@ -1,0 +1,12 @@
+commit_types:
+  - feat
+  - fix
+  - refactor
+  - docs
+  - test
+  - chore
+  - style
+  - perf
+scope_required: false
+max_subject_length: 72
+require_user_confirmation: true

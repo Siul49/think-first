@@ -1,2 +1,6 @@
 ﻿.agent/reports/
 .agent/plan.json
+.codex/context/*
+!.codex/context/.gitkeep
+.codex/reports/*
+!.codex/reports/.gitkeep

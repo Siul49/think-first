@@ -1,0 +1,91 @@
+{
+    "version":  1,
+    "locale":  "ko",
+    "naming_rule":  "korean_full_with_abbrev",
+    "skills":  [
+                   {
+                       "id":  "skill.agent.backend",
+                       "display_name":  "백엔드 엔지니어 (Backend)"
+                   },
+                   {
+                       "id":  "skill.agent.frontend",
+                       "display_name":  "프론트엔드 엔지니어 (Frontend)"
+                   },
+                   {
+                       "id":  "skill.agent.mobile",
+                       "display_name":  "모바일 엔지니어 (Mobile)"
+                   },
+                   {
+                       "id":  "skill.agent.debug",
+                       "display_name":  "디버깅 해결사 (Debug)"
+                   },
+                   {
+                       "id":  "skill.agent.qa",
+                       "display_name":  "품질 검수자 (QA)"
+                   },
+                   {
+                       "id":  "skill.agent.pm",
+                       "display_name":  "기획 관리자 (PM)"
+                   },
+                   {
+                       "id":  "skill.workflow.orchestrator",
+                       "display_name":  "워크플로우 오케스트레이터 (Orchestrator)"
+                   },
+                   {
+                       "id":  "skill.workflow.guide",
+                       "display_name":  "워크플로우 가이드 (Guide)"
+                   },
+                   {
+                       "id":  "skill.workflow.commit",
+                       "display_name":  "커밋 담당자 (Commit)"
+                   },
+                   {
+                       "id":  "skill.workflow.project_customizer",
+                       "display_name":  "프로젝트 커스터마이저 (Customizer)"
+                   },
+                   {
+                       "id":  "skill.workflow.project_fit_orchestrator",
+                       "display_name":  "프로젝트 맞춤 조율자 (Project Fit)"
+                   },
+                   {
+                       "id":  "skill.governance.manage_skills",
+                       "display_name":  "스킬 관리 (Manage Skills)"
+                   },
+                   {
+                       "id":  "skill.verify.implementation",
+                       "display_name":  "구현 검증 파이프라인 (Verify Implementation)"
+                   },
+                   {
+                       "id":  "skill.verify.observability",
+                       "display_name":  "관측성 검증 (Verify Observability)"
+                   },
+                   {
+                       "id":  "skill.verify.room_pipeline",
+                       "display_name":  "룸 파이프라인 검증 (Verify Room Pipeline)"
+                   },
+                   {
+                       "id":  "skill.verify.api_schema",
+                       "display_name":  "API 스키마 검증 (Verify API Schema)"
+                   },
+                   {
+                       "id":  "skill.verify.database_layer",
+                       "display_name":  "데이터베이스 레이어 검증 (Verify Database Layer)"
+                   },
+                   {
+                       "id":  "skill.verify.crawler_engine",
+                       "display_name":  "크롤러 엔진 검증 (Verify Crawler Engine)"
+                   },
+                   {
+                       "id":  "skill.verify.business_logic",
+                       "display_name":  "비즈니스 로직 검증 (Verify Business Logic)"
+                   },
+                   {
+                       "id":  "skill.verify.korean_comments",
+                       "display_name":  "한글 주석 검증 (Verify Korean Comments)"
+                   },
+                   {
+                       "id":  "skill.governance.karpathy_guidelines",
+                       "display_name":  "카파시 가이드라인 (Karpathy)"
+                   }
+               ]
+}

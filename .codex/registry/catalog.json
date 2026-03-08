@@ -1,0 +1,273 @@
+{
+    "generated_at_utc":  "2026-03-06T09:34:51Z",
+    "source_of_truth":  "project-local .codex bundle",
+    "source_reference":  "skill-pack + legacy .agent assets",
+    "skills":  [
+                   {
+                       "name":  "백엔드 엔지니어 (Backend)",
+                       "description":  "APIs, repositories, authentication, database access, and server-side business logic.",
+                       "path":  ".codex/skills/backend-agent/SKILL.md"
+                   },
+                   {
+                       "name":  "프론트엔드 엔지니어 (Frontend)",
+                       "description":  "Web UI, forms, components, styling, and browser-side integration.",
+                       "path":  ".codex/skills/frontend-agent/SKILL.md"
+                   },
+                   {
+                       "name":  "모바일 엔지니어 (Mobile)",
+                       "description":  "Mobile screens, device capabilities, and mobile-first integration patterns.",
+                       "path":  ".codex/skills/mobile-agent/SKILL.md"
+                   },
+                   {
+                       "name":  "디버깅 해결사 (Debug)",
+                       "description":  "Root-cause analysis, failure reproduction, and surgical fixes.",
+                       "path":  ".codex/skills/debug-agent/SKILL.md"
+                   },
+                   {
+                       "name":  "품질 검수자 (QA)",
+                       "description":  "Findings-first review, risk checks, and quality verification.",
+                       "path":  ".codex/skills/qa-agent/SKILL.md"
+                   },
+                   {
+                       "name":  "기획 관리자 (PM)",
+                       "description":  "Planning, scoping, task breakdown, and coordination guidance.",
+                       "path":  ".codex/skills/pm-agent/SKILL.md"
+                   },
+                   {
+                       "name":  "워크플로우 오케스트레이터 (Orchestrator)",
+                       "description":  "Create task locks, choose templates, and coordinate multi-skill execution.",
+                       "path":  ".codex/skills/orchestrator/SKILL.md"
+                   },
+                   {
+                       "name":  "워크플로우 가이드 (Guide)",
+                       "description":  "Manual fallback workflow for docs, naming, and lightweight coordination.",
+                       "path":  ".codex/skills/workflow-guide/SKILL.md"
+                   },
+                   {
+                       "name":  "커밋 담당자 (Commit)",
+                       "description":  "Conventional commit guidance and commit hygiene.",
+                       "path":  ".codex/skills/commit/SKILL.md"
+                   },
+                   {
+                       "name":  "프로젝트 커스터마이저 (Customizer)",
+                       "description":  "Customize local skill packs and project-specific Codex assets.",
+                       "path":  ".codex/skills/project-customizer/SKILL.md"
+                   },
+                   {
+                       "name":  "프로젝트 맞춤 조율자 (Project Fit)",
+                       "description":  "Run project-fit customization and verification in one coordinated flow.",
+                       "path":  ".codex/skills/project-fit-orchestrator/SKILL.md"
+                   },
+                   {
+                       "name":  "스킬 관리 (Manage Skills)",
+                       "description":  "Maintain skill coverage, registries, routing maps, and validation scripts.",
+                       "path":  ".codex/skills/manage-skills/SKILL.md"
+                   },
+                   {
+                       "name":  "구현 검증 파이프라인 (Verify Implementation)",
+                       "description":  "Run all project verify skills and consolidate the results.",
+                       "path":  ".codex/skills/verify-implementation/SKILL.md"
+                   },
+                   {
+                       "name":  "관측성 검증 (Verify Observability)",
+                       "description":  "Validate trace IDs, log masking, and middleware observability guardrails.",
+                       "path":  ".codex/skills/verify-observability/SKILL.md"
+                   },
+                   {
+                       "name":  "룸 파이프라인 검증 (Verify Room Pipeline)",
+                       "description":  "Validate room collection, parsing, DTO aliases, and pipeline consistency.",
+                       "path":  ".codex/skills/verify-room-pipeline/SKILL.md"
+                   },
+                   {
+                       "name":  "API 스키마 검증 (Verify API Schema)",
+                       "description":  "Validate routers, DTOs, request/response models, and API contract integrity.",
+                       "path":  ".codex/skills/verify-api-schema/SKILL.md"
+                   },
+                   {
+                       "name":  "데이터베이스 레이어 검증 (Verify Database Layer)",
+                       "description":  "Validate repositories, CRUD paths, schema assumptions, and query safety.",
+                       "path":  ".codex/skills/verify-database-layer/SKILL.md"
+                   },
+                   {
+                       "name":  "크롤러 엔진 검증 (Verify Crawler Engine)",
+                       "description":  "Validate crawler behavior, parsing rules, regex extraction, and scraping reliability.",
+                       "path":  ".codex/skills/verify-crawler-engine/SKILL.md"
+                   },
+                   {
+                       "name":  "비즈니스 로직 검증 (Verify Business Logic)",
+                       "description":  "Validate service-layer rules, scheduling, exceptions, and domain behaviors.",
+                       "path":  ".codex/skills/verify-business-logic/SKILL.md"
+                   },
+                   {
+                       "name":  "한글 주석 검증 (Verify Korean Comments)",
+                       "description":  "Validate Korean rationale and usage comments on new definitions.",
+                       "path":  ".codex/skills/verify-korean-comments/SKILL.md"
+                   },
+                   {
+                       "name":  "카파시 가이드라인 (Karpathy)",
+                       "description":  "Keep solutions simple, surgical, and goal-driven.",
+                       "path":  ".codex/skills/karpathy-guidelines/SKILL.md"
+                   }
+               ],
+    "workflows":  [
+                      {
+                          "path":  ".codex/workflows/coordinate.md",
+                          "description":  "English coordination workflow for cross-skill sequencing and handoffs.",
+                          "name":  "coordinate.md"
+                      },
+                      {
+                          "path":  ".codex/workflows/debug.md",
+                          "description":  "English debugging workflow for reproduction, diagnosis, and fix loops.",
+                          "name":  "debug.md"
+                      },
+                      {
+                          "path":  ".codex/workflows/orchestrate.md",
+                          "description":  "English orchestration workflow for guarded multi-skill execution.",
+                          "name":  "orchestrate.md"
+                      },
+                      {
+                          "path":  ".codex/workflows/plan.md",
+                          "description":  "English planning workflow for scope, breakdown, and execution order.",
+                          "name":  "plan.md"
+                      },
+                      {
+                          "path":  ".codex/workflows/review.md",
+                          "description":  "English review workflow for findings-first quality checks.",
+                          "name":  "review.md"
+                      },
+                      {
+                          "path":  ".codex/workflows/setup.md",
+                          "description":  "English setup workflow for onboarding and environment preparation.",
+                          "name":  "setup.md"
+                      },
+                      {
+                          "path":  ".codex/workflows/tools.md",
+                          "description":  "English tools workflow describing available tooling and safe usage patterns.",
+                          "name":  "tools.md"
+                      },
+                      {
+                          "path":  ".codex/workflows/기획.md",
+                          "description":  "Korean alias of the planning workflow.",
+                          "name":  "기획.md"
+                      },
+                      {
+                          "path":  ".codex/workflows/도구.md",
+                          "description":  "Korean alias of the tools workflow.",
+                          "name":  "도구.md"
+                      },
+                      {
+                          "path":  ".codex/workflows/디버깅.md",
+                          "description":  "Korean alias of the debugging workflow.",
+                          "name":  "디버깅.md"
+                      },
+                      {
+                          "path":  ".codex/workflows/리뷰.md",
+                          "description":  "Korean alias of the review workflow.",
+                          "name":  "리뷰.md"
+                      },
+                      {
+                          "path":  ".codex/workflows/설정.md",
+                          "description":  "Korean alias of the setup workflow.",
+                          "name":  "설정.md"
+                      },
+                      {
+                          "path":  ".codex/workflows/오케스트레이션.md",
+                          "description":  "Korean alias of the orchestration workflow.",
+                          "name":  "오케스트레이션.md"
+                      },
+                      {
+                          "path":  ".codex/workflows/조율.md",
+                          "description":  "Korean alias of the coordination workflow.",
+                          "name":  "조율.md"
+                      }
+                  ],
+    "hooks":  [
+                  {
+                      "path":  ".codex/skills/_shared/run-task.ps1",
+                      "description":  "Create a skill lock, resolve selected skills, and choose the subagent template.",
+                      "name":  "run-task.ps1"
+                  },
+                  {
+                      "path":  ".codex/skills/_shared/validate-skill-lock.ps1",
+                      "description":  "Validate the active skill lock before guarded execution.",
+                      "name":  "validate-skill-lock.ps1"
+                  },
+                  {
+                      "path":  ".codex/skills/_shared/preflight.ps1",
+                      "description":  "Run pre-execution guards such as git checks, skill-lock checks, and protected-file checks.",
+                      "name":  "preflight.ps1"
+                  },
+                  {
+                      "path":  ".codex/skills/_shared/verify.ps1",
+                      "description":  "Run bundle-level verification and optional repository checks after guarded execution.",
+                      "name":  "verify.ps1"
+                  },
+                  {
+                      "path":  ".codex/skills/_shared/postflight.ps1",
+                      "description":  "Write postflight reports and update skill-lock metadata after work.",
+                      "name":  "postflight.ps1"
+                  },
+                  {
+                      "path":  ".codex/skills/_shared/build-context-pack.ps1",
+                      "description":  "Compress relevant context into a smaller pack for larger code tasks.",
+                      "name":  "build-context-pack.ps1"
+                  },
+                  {
+                      "path":  ".codex/skills/_shared/ensure-big-task-docs.ps1",
+                      "description":  "Guard big tasks by requiring recent planning/review artifacts.",
+                      "name":  "ensure-big-task-docs.ps1"
+                  },
+                  {
+                      "path":  ".codex/skills/_shared/select-subagent-template.ps1",
+                      "description":  "Select the right orchestration template from the subagent manifest.",
+                      "name":  "select-subagent-template.ps1"
+                  }
+              ],
+    "shared_assets":  [
+                          {
+                              "path":  ".codex/config/user-preferences.yaml",
+                              "description":  "Local user defaults for language, CLI priority, and profile wiring.",
+                              "name":  "user-preferences.yaml"
+                          },
+                          {
+                              "path":  ".codex/mcp.json",
+                              "description":  "Project-local MCP reference for Serena memory integration.",
+                              "name":  "mcp.json"
+                          },
+                          {
+                              "path":  ".codex/subagent/template-manifest.json",
+                              "description":  "Subagent template registry with token/context budgets and report schemas.",
+                              "name":  "template-manifest.json"
+                          },
+                          {
+                              "path":  ".codex/skill-pack/config/skill-style.json",
+                              "description":  "Display-name source of truth for local skills.",
+                              "name":  "skill-style.json"
+                          },
+                          {
+                              "path":  ".codex/skill-pack/profiles/kyungsu.yaml",
+                              "description":  "Personal profile bundle for response tone and reporting defaults.",
+                              "name":  "kyungsu.yaml"
+                          },
+                          {
+                              "path":  ".codex/skills/_shared/skill-id-registry.json",
+                              "description":  "Canonical skill IDs, legacy IDs, and local directory mapping.",
+                              "name":  "skill-id-registry.json"
+                          },
+                          {
+                              "path":  ".codex/skills/_shared/skill-routing.md",
+                              "description":  "Keyword routing map and verify summary for local skills.",
+                              "name":  "skill-routing.md"
+                          },
+                          {
+                              "path":  ".codex/skills/_shared/skill-guardrails.json",
+                              "description":  "Alias map and keyword guardrails used by task-lock orchestration.",
+                              "name":  "skill-guardrails.json"
+                          },
+                          {
+                              "path":  ".codex/skills/_shared/skill-abbreviation-glossary.md",
+                              "description":  "Display-name glossary expanding abbreviations used in skill names.",
+                              "name":  "skill-abbreviation-glossary.md"
+                          }
+                      ]
+}

@@ -1,69 +1,57 @@
-# Codex Agent Policy
+﻿# Project Agent Rules
 
-This repository enforces skill-first execution for every user turn.
+## Codex Bundle First
 
-## Mandatory Turn-Start Skill Resolution
+- Use the project-local `.codex` bundle as the source of truth for Codex runtime assets.
+- Treat `.codex/config/user-preferences.yaml` as the source of truth for CLI priority and per-agent mapping.
+- Keep Serena MCP context aligned with `.codex/mcp.json` (`--context antigravity`).
 
-1. For every user message, resolve related skills before any tool use or code edit.
-2. Priority order:
-   - Explicitly named skills in the user message
-   - Keyword routing from `.agent/skills/_shared/skill-routing.md`
-   - Best fallback skill when no direct match exists
-3. Announce selected skills in one short line before execution.
-   - Format: `사용 스킬: <skill1>, <skill2> (reason)`
-4. If no skill matches, state fallback clearly and continue.
-5. Do not skip this process, even for short requests.
+## Personal Profile First
 
-## Routing Source of Truth
+- Load `.codex/skill-pack/profiles/kyungsu.yaml` first when present.
+- Address the user as `경수님`.
+- Keep a friendly but polite Korean tone.
+- For substantial work reports, include `What`, `Why`, and `Result`.
 
-- Primary routing map: `.agent/skills/_shared/skill-routing.md`
-- Verification orchestration: `.agent/skills/verify-implementation/SKILL.md`
-- Skill maintenance and sync: `.agent/skills/manage-skills/SKILL.md`
+## Karpathy Guardrails
 
-## Mandatory Big-Task Documentation Loop
+- Prefer simple, request-scoped implementation over speculative abstractions.
+- Make surgical diffs and avoid unrelated refactors.
+- Surface assumptions and tradeoffs before coding when ambiguous.
+- Define success checks first, then implement and verify.
 
-For every large task, create and maintain this 3-document pack:
+## Skillset Scope
 
-1. plan document
-2. context document
-3. checklist document
+- Prefer project-local skills in `.codex/skills` over global skill catalogs unless the user explicitly requests a global skill.
+- Default entry skills for routine work:
+  - `project-fit-orchestrator`
+  - `verify-implementation`
+  - `manage-skills`
+  - `workflow-guide`
 
-### Start of Big Task (Required)
+## Sync Hygiene
 
-Run:
+- When verify skills change, keep these synchronized:
+  - `.codex/skills/verify-implementation/SKILL.md`
+  - `.codex/skills/manage-skills/SKILL.md`
+  - `.codex/skills/_shared/skill-routing.md`
+- Run:
+  - `powershell -ExecutionPolicy Bypass -File .codex/scripts/validate-bundle.ps1 -RepoRoot .`
+  - `powershell -ExecutionPolicy Bypass -File .codex/scripts/build-inventory.ps1 -RepoRoot .`
 
-```powershell
-powershell -ExecutionPolicy Bypass -File .agent/skills/_shared/ensure-big-task-docs.ps1 -Workspace . -Mode Init -TaskId <task-id>
-```
+## Skill-Lock Guardrail
 
-This creates:
-- `.agent/context/<task-id>/plan.md`
-- `.agent/context/<task-id>/context.md`
-- `.agent/context/<task-id>/checklist.md`
+- Do not start implementation directly.
+- Always create task lock first:
+  - `powershell -ExecutionPolicy Bypass -File .codex/skills/_shared/run-task.ps1 -TaskText "<user-request>" -Workspace . -AgentType orchestrator`
+- If no matching skill keyword is found, `run-task.ps1` automatically falls back to `workflow-guide`.
+- For truly skill-free work, use explicit exception:
+  - `powershell -ExecutionPolicy Bypass -File .codex/skills/_shared/run-task.ps1 -TaskText "<user-request>" -Workspace . -AgentType orchestrator -NoSkill -NoSkillReason "<why no skill is needed>"`
+- `preflight.ps1` enforces lock validation and blocks execution when lock is missing or mismatched.
 
-### Before Every Subtask (Required)
+## Subagent Template Engine
 
-Read the 3 documents, then record review checkpoint:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .agent/skills/_shared/ensure-big-task-docs.ps1 -Workspace . -Mode Review -TaskId <task-id> -SubtaskNote "<subtask summary>"
-```
-
-### Enforcement
-
-`preflight.ps1` runs a big-task docs guard (`Mode Check`) and blocks execution if docs are missing or stale.
-
-## Update Rule
-
-When adding/updating/removing verify skills, synchronize:
-
-1. `.agent/skills/manage-skills/SKILL.md`
-2. `.agent/skills/verify-implementation/SKILL.md`
-3. `.agent/skills/_shared/skill-routing.md`
-
-Then run:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .agent/skills/manage-skills/scripts/validate-skill-links.ps1
-powershell -ExecutionPolicy Bypass -File .agent/skills/manage-skills/scripts/validate-verify-registry.ps1 -RepoRoot .
-```
+- `run-task.ps1` selects subagent template from `.codex/subagent/template-manifest.json`.
+- Selected template writes `token_budget`, `context_budget`, `report_schema`, and `context_pack_path` into the skill-lock.
+- Context compression is mandatory for code tasks via `.codex/skills/_shared/build-context-pack.ps1`.
+- Code-oriented chains automatically include `karpathy-guidelines` unless `-DisableKarpathy` is explicitly set.

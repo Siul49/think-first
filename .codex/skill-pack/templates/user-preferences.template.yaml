@@ -1,0 +1,17 @@
+language: ko
+date_format: ISO
+timezone: Asia/Seoul
+
+profile_path: .codex/skill-pack/profiles/kyungsu.yaml
+skill_name_style: korean_full_with_abbrev
+report_style: what_why_result
+
+default_cli: antigravity
+
+agent_cli_mapping:
+  frontend: antigravity
+  backend: antigravity
+  mobile: antigravity
+  qa: antigravity
+  debug: antigravity
+  pm: antigravity

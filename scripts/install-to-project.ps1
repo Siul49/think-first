@@ -8,24 +8,34 @@ $ErrorActionPreference = 'Stop'
 
 $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $packRoot = Resolve-Path (Join-Path $scriptRoot "..")
-$sourceAgent = Join-Path $packRoot ".agent"
-$targetAgent = Join-Path $TargetPath ".agent"
+$sourceBundle = Join-Path $packRoot ".codex"
+$targetBundle = Join-Path $TargetPath ".codex"
+$bundleInstaller = Join-Path $targetBundle "skill-pack/scripts/install.ps1"
 
-if (-not (Test-Path $sourceAgent)) {
-    throw "source .agent path not found: $sourceAgent"
+if (-not (Test-Path $sourceBundle)) {
+    throw "source .codex path not found: $sourceBundle"
 }
 if (-not (Test-Path $TargetPath)) {
     throw "target path not found: $TargetPath"
 }
 
-$rbExit = 0
-& robocopy $sourceAgent $targetAgent /E /XD reports /XF plan.json | Out-Null
+New-Item -ItemType Directory -Force -Path $targetBundle | Out-Null
+& robocopy $sourceBundle $targetBundle /E /XD context reports | Out-Null
 $rbExit = $LASTEXITCODE
 if ($rbExit -ge 8) {
     throw "robocopy failed with exit code: $rbExit"
 }
 
-Write-Output "[install] copied .agent assets to $TargetPath"
+Write-Output "[install] copied .codex bundle to $TargetPath"
+
+if (-not (Test-Path $bundleInstaller)) {
+    throw "bundle installer not found after copy: $bundleInstaller"
+}
+
+& $bundleInstaller -RepoRoot $TargetPath
+if (-not $?) {
+    throw "bundle bootstrap failed"
+}
 
 if ($ApplyLocalIgnore) {
     & git -C $TargetPath rev-parse --is-inside-work-tree | Out-Null
@@ -40,9 +50,9 @@ if ($ApplyLocalIgnore) {
 
     $rules = @(
         "# skill-pack local ignores",
-        ".agent/",
-        ".agent/plan.json",
-        ".agent/reports/",
+        ".codex/",
+        ".codex/context/",
+        ".codex/reports/",
         ".tmp-cc-system/",
         ".claude/",
         ".vscode/"
@@ -58,11 +68,11 @@ if ($ApplyLocalIgnore) {
 }
 
 if ($SetSkipWorktree) {
-    $trackedAgentFiles = git -C $TargetPath ls-files .agent
-    foreach ($file in $trackedAgentFiles) {
+    $trackedBundleFiles = git -C $TargetPath ls-files .codex
+    foreach ($file in $trackedBundleFiles) {
         git -C $TargetPath update-index --skip-worktree -- $file
     }
-    Write-Output "[install] skip-worktree set for tracked .agent files"
+    Write-Output "[install] skip-worktree set for tracked .codex files"
 }
 
 Write-Output "[install] done"

@@ -1,8 +1,8 @@
-param(
+﻿param(
     [Parameter(Mandatory = $true)][string]$TargetPath,
     [switch]$ApplyLocalIgnore,
     [switch]$SetSkipWorktree,
-    [string]$Branch = "main"
+    [string]$Branch
 )
 
 $ErrorActionPreference = 'Stop'
@@ -18,6 +18,13 @@ if (-not (Test-Path $installScript)) {
 & git -C $packRoot rev-parse --is-inside-work-tree | Out-Null
 if ($LASTEXITCODE -ne 0) {
     throw "skill-pack is not a git repo: $packRoot"
+}
+
+if (-not $Branch) {
+    $Branch = (git -C $packRoot branch --show-current).Trim()
+    if (-not $Branch) {
+        $Branch = "main"
+    }
 }
 
 Write-Output "[sync] fetching latest skill-pack ($Branch)"

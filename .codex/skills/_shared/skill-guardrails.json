@@ -1,0 +1,72 @@
+{
+  "version": 2,
+  "aliases": {
+    "frontend": "skill.agent.frontend",
+    "frontend-agent": "skill.agent.frontend",
+    "backend": "skill.agent.backend",
+    "backend-agent": "skill.agent.backend",
+    "mobile": "skill.agent.mobile",
+    "mobile-agent": "skill.agent.mobile",
+    "qa": "skill.agent.qa",
+    "qa-agent": "skill.agent.qa",
+    "debug": "skill.agent.debug",
+    "debug-agent": "skill.agent.debug",
+    "pm": "skill.agent.pm",
+    "pm-agent": "skill.agent.pm",
+    "orchestrator": "skill.workflow.orchestrator"
+  },
+  "rules": [
+    {
+      "skill": "skill.agent.backend",
+      "keywords": ["api", "endpoint", "rest", "graphql", "database", "migration", "auth", "jwt", "login"]
+    },
+    {
+      "skill": "skill.agent.frontend",
+      "keywords": ["ui", "component", "page", "form", "tailwind", "css", "responsive", "web"]
+    },
+    {
+      "skill": "skill.agent.mobile",
+      "keywords": ["mobile", "ios", "android", "flutter", "react native", "expo"]
+    },
+    {
+      "skill": "skill.agent.debug",
+      "keywords": ["bug", "error", "crash", "broken", "hotfix", "root cause", "debug"]
+    },
+    {
+      "skill": "skill.agent.qa",
+      "keywords": ["review", "audit", "risk", "security", "performance", "accessibility", "a11y"]
+    },
+    {
+      "skill": "skill.agent.pm",
+      "keywords": ["plan", "task", "breakdown", "sprint", "requirement"]
+    },
+    {
+      "skill": "skill.verify.implementation",
+      "keywords": ["verify", "validation", "compliance", "before pr"]
+    },
+    {
+      "skill": "skill.verify.api_schema",
+      "keywords": ["dto", "router", "swagger", "api contract"]
+    },
+    {
+      "skill": "skill.verify.database_layer",
+      "keywords": ["supabase", "repository", "crud", "sql", "db schema"]
+    },
+    {
+      "skill": "skill.verify.crawler_engine",
+      "keywords": ["crawler", "scraping", "regex parser", "graphql extraction"]
+    },
+    {
+      "skill": "skill.verify.business_logic",
+      "keywords": ["business logic", "scheduler", "batch", "exception handling", "domain service"]
+    },
+    {
+      "skill": "skill.verify.korean_comments",
+      "keywords": ["korean comment", "docstring", "why comment", "comment quality"]
+    },
+    {
+      "skill": "skill.governance.karpathy_guidelines",
+      "keywords": ["karpathy", "simplicity first", "surgical changes", "minimal diff", "think before coding", "goal-driven"]
+    }
+  ]
+}

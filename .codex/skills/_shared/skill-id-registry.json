@@ -1,0 +1,196 @@
+{
+    "version":  1,
+    "canonical_id_regex":  "^skill\\.[a-z0-9]+(\\.[a-z0-9_]+){1,3}$",
+    "observation_window_days":  14,
+    "skills":  [
+                   {
+                       "canonical_id":  "skill.agent.backend",
+                       "legacy_ids":  [
+                                          "backend-agent"
+                                      ],
+                       "scope":  "local",
+                       "path":  "backend-agent",
+                       "display_name_ko":  "백엔드 엔지니어 (Backend)"
+                   },
+                   {
+                       "canonical_id":  "skill.agent.frontend",
+                       "legacy_ids":  [
+                                          "frontend-agent"
+                                      ],
+                       "scope":  "local",
+                       "path":  "frontend-agent",
+                       "display_name_ko":  "프론트엔드 엔지니어 (Frontend)"
+                   },
+                   {
+                       "canonical_id":  "skill.agent.mobile",
+                       "legacy_ids":  [
+                                          "mobile-agent"
+                                      ],
+                       "scope":  "local",
+                       "path":  "mobile-agent",
+                       "display_name_ko":  "모바일 엔지니어 (Mobile)"
+                   },
+                   {
+                       "canonical_id":  "skill.agent.debug",
+                       "legacy_ids":  [
+                                          "debug-agent"
+                                      ],
+                       "scope":  "local",
+                       "path":  "debug-agent",
+                       "display_name_ko":  "디버깅 해결사 (Debug)"
+                   },
+                   {
+                       "canonical_id":  "skill.agent.qa",
+                       "legacy_ids":  [
+                                          "qa-agent"
+                                      ],
+                       "scope":  "local",
+                       "path":  "qa-agent",
+                       "display_name_ko":  "품질 검수자 (QA)"
+                   },
+                   {
+                       "canonical_id":  "skill.agent.pm",
+                       "legacy_ids":  [
+                                          "pm-agent"
+                                      ],
+                       "scope":  "local",
+                       "path":  "pm-agent",
+                       "display_name_ko":  "기획 관리자 (PM)"
+                   },
+                   {
+                       "canonical_id":  "skill.workflow.orchestrator",
+                       "legacy_ids":  [
+                                          "orchestrator"
+                                      ],
+                       "scope":  "local",
+                       "path":  "orchestrator",
+                       "display_name_ko":  "워크플로우 오케스트레이터 (Orchestrator)"
+                   },
+                   {
+                       "canonical_id":  "skill.workflow.guide",
+                       "legacy_ids":  [
+                                          "workflow-guide"
+                                      ],
+                       "scope":  "local",
+                       "path":  "workflow-guide",
+                       "display_name_ko":  "워크플로우 가이드 (Guide)"
+                   },
+                   {
+                       "canonical_id":  "skill.workflow.commit",
+                       "legacy_ids":  [
+                                          "commit"
+                                      ],
+                       "scope":  "local",
+                       "path":  "commit",
+                       "display_name_ko":  "커밋 담당자 (Commit)"
+                   },
+                   {
+                       "canonical_id":  "skill.workflow.project_customizer",
+                       "legacy_ids":  [
+                                          "project-customizer"
+                                      ],
+                       "scope":  "local",
+                       "path":  "project-customizer",
+                       "display_name_ko":  "프로젝트 커스터마이저 (Customizer)"
+                   },
+                   {
+                       "canonical_id":  "skill.workflow.project_fit_orchestrator",
+                       "legacy_ids":  [
+                                          "project-fit-orchestrator"
+                                      ],
+                       "scope":  "local",
+                       "path":  "project-fit-orchestrator",
+                       "display_name_ko":  "프로젝트 맞춤 조율자 (Project Fit)"
+                   },
+                   {
+                       "canonical_id":  "skill.governance.manage_skills",
+                       "legacy_ids":  [
+                                          "manage-skills"
+                                      ],
+                       "scope":  "local",
+                       "path":  "manage-skills",
+                       "display_name_ko":  "스킬 관리 (Manage Skills)"
+                   },
+                   {
+                       "canonical_id":  "skill.verify.implementation",
+                       "legacy_ids":  [
+                                          "verify-implementation"
+                                      ],
+                       "scope":  "local",
+                       "path":  "verify-implementation",
+                       "display_name_ko":  "구현 검증 파이프라인 (Verify Implementation)"
+                   },
+                   {
+                       "canonical_id":  "skill.verify.observability",
+                       "legacy_ids":  [
+                                          "verify-observability"
+                                      ],
+                       "scope":  "local",
+                       "path":  "verify-observability",
+                       "display_name_ko":  "관측성 검증 (Verify Observability)"
+                   },
+                   {
+                       "canonical_id":  "skill.verify.room_pipeline",
+                       "legacy_ids":  [
+                                          "verify-room-pipeline"
+                                      ],
+                       "scope":  "local",
+                       "path":  "verify-room-pipeline",
+                       "display_name_ko":  "룸 파이프라인 검증 (Verify Room Pipeline)"
+                   },
+                   {
+                       "canonical_id":  "skill.verify.api_schema",
+                       "legacy_ids":  [
+                                          "verify-api-schema"
+                                      ],
+                       "scope":  "local",
+                       "path":  "verify-api-schema",
+                       "display_name_ko":  "API 스키마 검증 (Verify API Schema)"
+                   },
+                   {
+                       "canonical_id":  "skill.verify.database_layer",
+                       "legacy_ids":  [
+                                          "verify-database-layer"
+                                      ],
+                       "scope":  "local",
+                       "path":  "verify-database-layer",
+                       "display_name_ko":  "데이터베이스 레이어 검증 (Verify Database Layer)"
+                   },
+                   {
+                       "canonical_id":  "skill.verify.crawler_engine",
+                       "legacy_ids":  [
+                                          "verify-crawler-engine"
+                                      ],
+                       "scope":  "local",
+                       "path":  "verify-crawler-engine",
+                       "display_name_ko":  "크롤러 엔진 검증 (Verify Crawler Engine)"
+                   },
+                   {
+                       "canonical_id":  "skill.verify.business_logic",
+                       "legacy_ids":  [
+                                          "verify-business-logic"
+                                      ],
+                       "scope":  "local",
+                       "path":  "verify-business-logic",
+                       "display_name_ko":  "비즈니스 로직 검증 (Verify Business Logic)"
+                   },
+                   {
+                       "canonical_id":  "skill.verify.korean_comments",
+                       "legacy_ids":  [
+                                          "verify-korean-comments"
+                                      ],
+                       "scope":  "local",
+                       "path":  "verify-korean-comments",
+                       "display_name_ko":  "한글 주석 검증 (Verify Korean Comments)"
+                   },
+                   {
+                       "canonical_id":  "skill.governance.karpathy_guidelines",
+                       "legacy_ids":  [
+                                          "karpathy-guidelines"
+                                      ],
+                       "scope":  "local",
+                       "path":  "karpathy-guidelines",
+                       "display_name_ko":  "카파시 가이드라인 (Karpathy)"
+                   }
+               ]
+}

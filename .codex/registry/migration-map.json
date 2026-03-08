@@ -1,0 +1,37 @@
+[
+    {
+        "target":  ".codex/config",
+        "purpose":  "Codex-local runtime preferences",
+        "source":  ".agent/config"
+    },
+    {
+        "target":  ".codex/mcp.json",
+        "purpose":  "Project-local MCP reference",
+        "source":  ".agent/mcp.json"
+    },
+    {
+        "target":  ".codex/skill-pack",
+        "purpose":  "Portable templates, profile, and skill-style assets",
+        "source":  ".agent/skill-pack"
+    },
+    {
+        "target":  ".codex/skills",
+        "purpose":  "Local skill runtime and shared guardrails",
+        "source":  ".agent/skills"
+    },
+    {
+        "target":  ".codex/subagent",
+        "purpose":  "Template manifest for orchestration",
+        "source":  ".agent/subagent"
+    },
+    {
+        "target":  ".codex/workflows",
+        "purpose":  "Human-readable playbooks and aliases",
+        "source":  ".agent/workflows"
+    },
+    {
+        "target":  "AGENTS.md",
+        "purpose":  "Minimal Codex bootstrap that points to .codex",
+        "source":  "AGENTS.md"
+    }
+]

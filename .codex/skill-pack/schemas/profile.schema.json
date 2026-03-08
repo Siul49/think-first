@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Skill Pack Profile Schema",
+  "type": "object",
+  "required": [
+    "profile_id",
+    "display_name",
+    "call_user",
+    "language",
+    "tone",
+    "response_style"
+  ],
+  "properties": {
+    "profile_id": { "type": "string", "minLength": 1 },
+    "display_name": { "type": "string", "minLength": 1 },
+    "call_user": { "type": "string", "minLength": 1 },
+    "language": { "type": "string", "minLength": 2 },
+    "tone": { "type": "string", "minLength": 1 },
+    "response_style": {
+      "type": "object",
+      "required": ["honorific", "explain_what", "explain_why", "explain_result"],
+      "properties": {
+        "honorific": { "type": "boolean" },
+        "explain_what": { "type": "boolean" },
+        "explain_why": { "type": "boolean" },
+        "explain_result": { "type": "boolean" },
+        "share_intermediate_updates": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "naming_style": { "type": "object" },
+    "rules": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": true
+}

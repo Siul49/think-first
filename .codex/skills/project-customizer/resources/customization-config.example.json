@@ -1,0 +1,43 @@
+{
+  "verify_skill_name": "verify-example-domain",
+  "skill_display_name": "✅ 검증_예시_도메인",
+  "verify_skill_description": "Validate example-domain contracts and data flow.",
+  "execution_description": "Validate example-domain pipeline consistency",
+  "routing_keywords": [
+    "example domain",
+    "example pipeline",
+    "example validation"
+  ],
+  "coverage_patterns": [
+    "app/example/**/*.py",
+    "tests/example/**/*.py",
+    "scripts/example*.py"
+  ],
+  "related_files": [
+    {
+      "file": "app/example/service.py",
+      "purpose": "Core domain logic"
+    },
+    {
+      "file": "tests/example/test_service.py",
+      "purpose": "Domain regression tests"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Verify core symbol wiring",
+      "command": "rg -n \"ExampleService|run_example\" app/example/service.py",
+      "pass_criteria": "core symbols are declared and referenced"
+    },
+    {
+      "name": "Verify test coverage hook",
+      "command": "rg -n \"example|service\" tests/example/test_service.py",
+      "pass_criteria": "critical behavior appears in test scenarios"
+    }
+  ],
+  "exceptions": [
+    "Generated fixture-only file changes are not failures.",
+    "Optional integrations can be skipped when explicitly disabled by config.",
+    "Environment-specific local paths are not part of PASS criteria."
+  ]
+}

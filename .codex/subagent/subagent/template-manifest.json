@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "default_template_id": "tmpl_docs_refactor",
+  "templates": [
+    {
+      "id": "tmpl_bug_hotfix",
+      "description": "Bug/crash hotfix flow",
+      "match_keywords": ["bug", "error", "crash", "broken", "hotfix", "root cause", "exception"],
+      "skills": ["skill.agent.debug", "skill.agent.qa"],
+      "token_budget": 3000,
+      "context_budget": 1200,
+      "pm_mode": "skip",
+      "report_schema": ["changed_files", "tests", "risk", "decision"]
+    },
+    {
+      "id": "tmpl_backend_feature",
+      "description": "API/DB backend feature flow",
+      "match_keywords": ["api", "endpoint", "database", "db", "migration", "repository", "supabase"],
+      "skills": ["skill.agent.backend", "skill.verify.api_schema", "skill.verify.business_logic"],
+      "token_budget": 5000,
+      "context_budget": 1500,
+      "pm_mode": "mini",
+      "report_schema": ["changed_files", "tests", "risk", "decision"]
+    },
+    {
+      "id": "tmpl_frontend_feature",
+      "description": "UI/component feature flow",
+      "match_keywords": ["ui", "component", "page", "form", "css", "tailwind", "responsive", "frontend"],
+      "skills": ["skill.agent.frontend", "skill.agent.qa"],
+      "token_budget": 4000,
+      "context_budget": 1400,
+      "pm_mode": "mini",
+      "report_schema": ["changed_files", "tests", "risk", "decision"]
+    },
+    {
+      "id": "tmpl_fullstack_feature",
+      "description": "Backend + frontend feature flow",
+      "match_keywords": ["fullstack", "backend and frontend", "백엔드", "프론트", "end to end", "e2e feature"],
+      "skills": ["skill.agent.pm", "skill.agent.backend", "skill.agent.frontend", "skill.agent.qa", "skill.verify.implementation"],
+      "token_budget": 8000,
+      "context_budget": 1800,
+      "pm_mode": "full",
+      "report_schema": ["changed_files", "tests", "risk", "decision"]
+    },
+    {
+      "id": "tmpl_data_pipeline",
+      "description": "Crawler/pipeline feature flow",
+      "match_keywords": ["crawler", "pipeline", "parsing", "dto", "room pipeline", "batch parser"],
+      "skills": ["skill.agent.backend", "skill.verify.crawler_engine", "skill.verify.room_pipeline"],
+      "token_budget": 6000,
+      "context_budget": 1700,
+      "pm_mode": "mini",
+      "report_schema": ["changed_files", "tests", "risk", "decision"]
+    },
+    {
+      "id": "tmpl_docs_refactor",
+      "description": "Docs or light refactor fallback flow",
+      "match_keywords": ["docs", "document", "readme", "comment", "rename", "wording", "typo", "refactor"],
+      "skills": ["skill.workflow.guide"],
+      "token_budget": 1500,
+      "context_budget": 900,
+      "pm_mode": "skip",
+      "report_schema": ["changed_files", "tests", "risk", "decision"]
+    }
+  ]
+}
