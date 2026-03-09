@@ -44,16 +44,24 @@ fi
 # --- 모드별 경로 설정 ---
 case "$MODE" in
   --claude)
+    BASE_DIR=".claude"
     SKILLS_DIR=".claude/skills"
+    AGENTS_DIR=".claude/agents"
+    HOOKS_DIR=".claude/hooks"
     CONTEXT_DIR=".claude/context"
     CONFIG_FILE="CLAUDE.md"
+    SETTINGS_FILE=".claude/settings.json"
     IGNORE_PATTERNS=(".claude/context/" ".claude/settings.local.json")
     echo "[install] 모드: Claude Code"
     ;;
   --codex)
+    BASE_DIR=".agent"
     SKILLS_DIR=".agent/skills"
+    AGENTS_DIR=".agent/agents"
+    HOOKS_DIR=".agent/hooks"
     CONTEXT_DIR=".agent/context"
     CONFIG_FILE="agents.md"
+    SETTINGS_FILE=".agent/settings.json"
     IGNORE_PATTERNS=(".agent/context/")
     echo "[install] 모드: Codex"
     ;;
@@ -104,11 +112,51 @@ if [[ "$WITH_CONFIG" == "--with-config" ]]; then
   fi
 fi
 
-# --- 4. context 디렉토리 초기화 ---
+# --- 4. 서브에이전트 복사 ---
+if [[ -d "$PACK_ROOT/.claude/agents" ]]; then
+  echo "[install] 서브에이전트 복사 중..."
+  mkdir -p "$TARGET/$AGENTS_DIR"
+  cp -r "$PACK_ROOT/.claude/agents/"* "$TARGET/$AGENTS_DIR/"
+  AGENT_COUNT=$(find "$TARGET/$AGENTS_DIR" -name '*.md' | wc -l | tr -d ' ')
+  echo "[install] $AGENTS_DIR/ → 완료 (${AGENT_COUNT}개 에이전트)"
+fi
+
+# --- 5. Hooks 복사 ---
+if [[ -d "$PACK_ROOT/.claude/hooks" ]]; then
+  echo "[install] Hook 스크립트 복사 중..."
+  mkdir -p "$TARGET/$HOOKS_DIR"
+  cp -r "$PACK_ROOT/.claude/hooks/"* "$TARGET/$HOOKS_DIR/"
+  chmod +x "$TARGET/$HOOKS_DIR/"*.sh 2>/dev/null || true
+  echo "[install] $HOOKS_DIR/ → 완료"
+fi
+
+# --- 6. settings.json 복사 (hooks 설정, 덮어쓰기 방지) ---
+if [[ -f "$PACK_ROOT/.claude/settings.json" ]]; then
+  if [[ -f "$TARGET/$SETTINGS_FILE" ]]; then
+    echo "[install] $SETTINGS_FILE 이미 존재합니다. 덮어쓰지 않습니다."
+    if [[ "$MODE" == "--codex" ]]; then
+      sed 's|\.claude/hooks/|.agent/hooks/|g; s|\.claude/context/|.agent/context/|g' \
+        "$PACK_ROOT/.claude/settings.json" > "$TARGET/${SETTINGS_FILE}.skill-pack-template"
+    else
+      cp "$PACK_ROOT/.claude/settings.json" "$TARGET/${SETTINGS_FILE}.skill-pack-template"
+    fi
+    echo "[install] 템플릿을 ${SETTINGS_FILE}.skill-pack-template로 저장합니다."
+  else
+    if [[ "$MODE" == "--codex" ]]; then
+      sed 's|\.claude/hooks/|.agent/hooks/|g; s|\.claude/context/|.agent/context/|g' \
+        "$PACK_ROOT/.claude/settings.json" > "$TARGET/$SETTINGS_FILE"
+    else
+      cp "$PACK_ROOT/.claude/settings.json" "$TARGET/$SETTINGS_FILE"
+    fi
+    echo "[install] $SETTINGS_FILE → 완료 (hooks 설정 포함)"
+  fi
+fi
+
+# --- 7. context 디렉토리 초기화 ---
 mkdir -p "$TARGET/$CONTEXT_DIR"
 echo "[install] $CONTEXT_DIR/ → 초기화 완료"
 
-# --- 5. .gitignore 업데이트 ---
+# --- 8. .gitignore 업데이트 ---
 if [[ -f "$TARGET/.gitignore" ]]; then
   NEEDS_UPDATE=false
   for pattern in "${IGNORE_PATTERNS[@]}"; do

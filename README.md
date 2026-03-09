@@ -88,6 +88,28 @@ bash scripts/install.sh /path/to/your-project
 - **검증 스킬** (verify-implementation, manage-skills): 수동 호출 시 실행
 - 각 스킬은 `SKILL.md`(규칙)와 `resources/`(상세 리소스)로 구성
 
+## 서브에이전트
+
+독립 컨텍스트에서 전문화된 작업을 위임합니다. 스킬과 달리 도구 제한과 모델 선택이 가능합니다.
+
+| 에이전트 | 모델 | 용도 | 제한 |
+|---------|------|------|------|
+| `code-reviewer` | sonnet | 코드 리뷰 | 읽기 전용 (Edit/Write 차단) |
+| `task-planner` | inherit | 복합 작업 계획서 작성 | Bash 차단 |
+| `test-runner` | haiku | 테스트 실행 + 결과 분석 | 읽기 전용 (Edit/Write 차단) |
+| `doc-writer` | sonnet | 문서 생성/갱신 | Bash 차단 |
+
+## Hooks
+
+파일 수정, 명령 실행 등의 이벤트에 자동으로 반응합니다.
+
+| Hook | 이벤트 | 동작 |
+|------|--------|------|
+| 위험 명령 차단 | `PreToolUse(Bash)` | `rm -rf /`, `git push --force main` 등 차단 |
+| 체크리스트 리마인더 | `Stop` | 복합 작업 중 미완료 항목 알림 |
+
+Hook 스크립트는 `.claude/hooks/`에 위치하며, `.claude/settings.json`에서 등록합니다.
+
 ## 복합 작업 프로토콜
 
 파일 3개 이상 수정, 도메인 2개 이상 연동 등 큰 작업은 자동으로:
