@@ -59,6 +59,29 @@
 
 ---
 
+## 서브에이전트 자동 위임
+
+스킬과 별도로, 다음 상황에서 서브에이전트를 자동 호출한다:
+
+| 트리거 | 서브에이전트 | Worktree | 조건 |
+|--------|-------------|----------|------|
+| 코드 수정 완료 | `code-reviewer` | YES | diff가 존재할 때 |
+| 복합 작업 감지 | `task-planner` | NO | 규모 판단 기준 충족 시 |
+| 구현 단계 완료 | `test-runner` | YES | 테스트 파일이 존재할 때 |
+| 모든 구현 완료 | `doc-writer` | NO | 문서 갱신이 필요할 때 |
+| 인증/보안 코드 변경 | `security-auditor` | YES | auth, token, password, permission 관련 변경 |
+
+### 스킬 → 서브에이전트 연계
+
+| 스킬 완료 후 | 자동 위임 대상 |
+|-------------|---------------|
+| backend, frontend, mobile | `code-reviewer` → `test-runner` |
+| debug | `test-runner` (회귀 검증) |
+| pm | `task-planner` (계획서 생성) |
+| 구현 전체 완료 | `doc-writer` → `security-auditor` (보안 관련 시) |
+
+---
+
 ## 에스컬레이션
 
 | 상황 | 대응 |

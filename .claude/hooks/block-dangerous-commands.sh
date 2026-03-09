@@ -6,24 +6,42 @@ set -euo pipefail
 
 # stdin에서 JSON 입력 읽기
 INPUT=$(cat)
-COMMAND=$(echo "$INPUT" | grep -o '"command":"[^"]*"' | head -1 | sed 's/"command":"//;s/"$//' 2>/dev/null || echo "")
+
+# 명령어 추출 (jq 우선, grep fallback)
+if command -v jq &>/dev/null; then
+  COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty' 2>/dev/null || echo "")
+else
+  COMMAND=$(echo "$INPUT" | grep -o '"command":"[^"]*"' | head -1 | sed 's/"command":"//;s/"$//' 2>/dev/null || echo "")
+fi
+
+if [[ -z "$COMMAND" ]]; then
+  exit 0
+fi
 
 # 차단 패턴 목록
 BLOCKED_PATTERNS=(
   "rm -rf /"
   "rm -rf /*"
+  "rm -rf ~"
+  "sudo rm -rf"
   "git push --force main"
   "git push --force master"
   "git push -f origin main"
   "git push -f origin master"
+  "git push --force-with-lease origin main"
+  "git push --force-with-lease origin master"
   "git reset --hard"
   "git clean -fd"
+  "git checkout -- ."
   "DROP TABLE"
   "DROP DATABASE"
+  "TRUNCATE TABLE"
   "truncate "
   "> /dev/sda"
   "mkfs."
   ":(){ :|:& };:"
+  "chmod 777"
+  "chmod -R 777"
 )
 
 for pattern in "${BLOCKED_PATTERNS[@]}"; do

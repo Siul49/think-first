@@ -31,21 +31,36 @@ Claude Code 기반 재사용 가능한 에이전트 스킬 번들.
 ## 구조
 
 ```
-.claude/skills/              # 스킬 정의 (SKILL.md + resources/)
-├── backend/                 # API, DB, 서버 로직
-├── frontend/                # UI, 컴포넌트, 스타일링
-├── mobile/                  # iOS, Android, Flutter
-├── debug/                   # 버그 진단, 에러 추적
-├── qa/                      # 보안/성능/접근성 감사
-├── review/                  # 코드 리뷰
-├── pm/                      # 기획, 태스크 분해
-├── commit/                  # Conventional Commits
-├── research/                # 기술 조사, 선행 리서치
-├── document/                # 문서화, API/아키텍처 문서
-├── context-builder/         # 프로젝트 컨텍스트 자동 생성
-├── verify-implementation/   # 통합 검증 파이프라인
-├── manage-skills/           # 검증 스킬 자동 생성/관리
-└── _shared/resources/       # 공유 리소스
+.claude/
+├── skills/                  # 스킬 정의 (SKILL.md + resources/)
+│   ├── backend/             # API, DB, 서버 로직
+│   ├── frontend/            # UI, 컴포넌트, 스타일링
+│   ├── mobile/              # iOS, Android, Flutter
+│   ├── debug/               # 버그 진단, 에러 추적
+│   ├── qa/                  # 보안/성능/접근성 감사
+│   ├── review/              # 코드 리뷰
+│   ├── pm/                  # 기획, 태스크 분해
+│   ├── commit/              # Conventional Commits
+│   ├── research/            # 기술 조사, 선행 리서치
+│   ├── document/            # 문서화, API/아키텍처 문서
+│   ├── context-builder/     # 프로젝트 컨텍스트 자동 생성
+│   ├── verify-implementation/  # 통합 검증 파이프라인
+│   ├── manage-skills/       # 검증 스킬 자동 생성/관리
+│   └── _shared/resources/   # 공유 리소스
+├── agents/                  # 서브에이전트 (자동 위임)
+│   ├── code-reviewer.md     # 코드 리뷰 (worktree 격리)
+│   ├── task-planner.md      # 복합 작업 계획서
+│   ├── test-runner.md       # 테스트 실행 (worktree 격리)
+│   ├── doc-writer.md        # 문서 생성/갱신
+│   └── security-auditor.md  # 보안 스캔 (worktree 격리)
+├── hooks/                   # 이벤트 Hook 스크립트
+│   ├── session-context-loader.sh  # SessionStart
+│   ├── block-dangerous-commands.sh  # PreToolUse(Bash)
+│   ├── auto-format.sh       # PostToolUse(Edit|Write)
+│   ├── checklist-reminder.sh  # Stop
+│   └── subagent-post-process.sh  # SubagentStop
+├── settings.json            # Hook 등록, 권한 설정
+└── context/                 # 복합 작업 문서 (런타임)
 CLAUDE.md                    # 프로젝트 설정 템플릿
 ```
 
@@ -90,23 +105,32 @@ bash scripts/install.sh /path/to/your-project
 
 ## 서브에이전트
 
-독립 컨텍스트에서 전문화된 작업을 위임합니다. 스킬과 달리 도구 제한과 모델 선택이 가능합니다.
+독립 컨텍스트에서 전문화된 작업을 위임합니다. 상황에 따라 자동으로 호출되며, 읽기 전용 에이전트는 worktree 격리로 안전하게 실행됩니다.
 
-| 에이전트 | 모델 | 용도 | 제한 |
-|---------|------|------|------|
-| `code-reviewer` | sonnet | 코드 리뷰 | 읽기 전용 (Edit/Write 차단) |
-| `task-planner` | inherit | 복합 작업 계획서 작성 | Bash 차단 |
-| `test-runner` | haiku | 테스트 실행 + 결과 분석 | 읽기 전용 (Edit/Write 차단) |
-| `doc-writer` | sonnet | 문서 생성/갱신 | Bash 차단 |
+| 에이전트 | 모델 | 용도 | Worktree | 자동 호출 조건 |
+|---------|------|------|----------|---------------|
+| `code-reviewer` | sonnet | 코드 리뷰 | YES | 코드 수정 완료 후 |
+| `task-planner` | inherit | 복합 작업 계획서 | NO | 복합 작업 감지 시 |
+| `test-runner` | haiku | 테스트 실행/분석 | YES | 구현 완료 후 |
+| `doc-writer` | sonnet | 문서 생성/갱신 | NO | 기능 완료 후 |
+| `security-auditor` | sonnet | 보안 취약점 스캔 | YES | 인증/보안 코드 변경 시 |
+
+### Worktree 격리
+
+읽기 전용 에이전트는 `isolation: worktree`로 독립된 git worktree에서 실행됩니다.
+메인 작업과 충돌 없이 병렬 실행이 가능하며, 완료 후 자동으로 정리됩니다.
 
 ## Hooks
 
-파일 수정, 명령 실행 등의 이벤트에 자동으로 반응합니다.
+파일 수정, 명령 실행, 세션 시작/종료 등의 이벤트에 자동으로 반응합니다.
 
 | Hook | 이벤트 | 동작 |
 |------|--------|------|
+| 세션 컨텍스트 로더 | `SessionStart` | 브랜치, 미커밋 변경, 진행 중 태스크 상태 주입 |
 | 위험 명령 차단 | `PreToolUse(Bash)` | `rm -rf /`, `git push --force main` 등 차단 |
-| 체크리스트 리마인더 | `Stop` | 복합 작업 중 미완료 항목 알림 |
+| 자동 포매팅 | `PostToolUse(Edit\|Write)` | 파일 수정 후 프로젝트 포매터 자동 실행 |
+| 체크리스트 리마인더 | `Stop` | 복합 작업 중 미완료 항목 목록 알림 |
+| 서브에이전트 후처리 | `SubagentStop` | 서브에이전트 완료 후 다음 단계 안내 |
 
 Hook 스크립트는 `.claude/hooks/`에 위치하며, `.claude/settings.json`에서 등록합니다.
 

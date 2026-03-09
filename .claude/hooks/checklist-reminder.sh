@@ -22,11 +22,19 @@ if [[ ! -f "$CHECKLIST" ]]; then
   exit 0
 fi
 
-# 미완료 항목 카운트
-INCOMPLETE=$(grep -c '^\- \[ \]' "$CHECKLIST" 2>/dev/null || echo "0")
+# 미완료 항목 수집
+INCOMPLETE_COUNT=$(grep -c '^\- \[ \]' "$CHECKLIST" 2>/dev/null || echo "0")
 
-if [[ "$INCOMPLETE" -gt 0 ]]; then
-  echo "[체크리스트 리마인더] 작업 '$TASK_ID'에 미완료 항목 ${INCOMPLETE}건이 있습니다. $CHECKLIST를 확인하세요." >&2
+if [[ "$INCOMPLETE_COUNT" -gt 0 ]]; then
+  ITEMS=$(grep '^\- \[ \]' "$CHECKLIST" 2>/dev/null | head -10 | sed 's/^- \[ \] /  · /')
+  {
+    echo "[체크리스트 리마인더] 작업 '$TASK_ID'에 미완료 항목 ${INCOMPLETE_COUNT}건:"
+    echo "$ITEMS"
+    if [[ "$INCOMPLETE_COUNT" -gt 10 ]]; then
+      echo "  ... 외 $((INCOMPLETE_COUNT - 10))건"
+    fi
+    echo "파일: $CHECKLIST"
+  } >&2
   exit 2
 fi
 

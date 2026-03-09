@@ -1,9 +1,11 @@
 ---
 name: test-runner
-description: 테스트를 실행하고 결과를 요약합니다. 실패한 테스트의 원인을 분석합니다.
+description: 테스트를 실행하고 결과를 요약합니다. 구현 완료 후 자동으로 호출합니다.
 tools: Bash, Read, Grep, Glob
 disallowedTools: Edit, Write
 model: haiku
+isolation: worktree
+maxTurns: 10
 ---
 
 # 테스트 러너

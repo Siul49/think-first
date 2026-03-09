@@ -103,6 +103,23 @@
 | 새 기술 도입 | research → pm → 구현 → qa |
 | 대규모 변경 후 문서화 | 구현 → document → context-builder |
 
+## 서브에이전트 자동 위임
+
+다음 상황에서 해당 서브에이전트를 자동으로 호출한다:
+
+| 상황 | 서브에이전트 | 비고 |
+|------|-------------|------|
+| 코드 수정 완료 후 | `code-reviewer` | worktree 격리, 변경 diff 리뷰 |
+| 복합 작업 감지 시 | `task-planner` | 계획서/체크리스트/컨텍스트 자동 생성 |
+| 구현 완료 후 | `test-runner` | worktree 격리, 백그라운드 테스트 |
+| 기능 완료 후 | `doc-writer` | README, API 문서 갱신 |
+| 인증/권한/입력검증 코드 변경 시 | `security-auditor` | worktree 격리, 보안 취약점 스캔 |
+
+### Worktree 격리 전략
+
+읽기 전용 에이전트(`code-reviewer`, `test-runner`, `security-auditor`)는 `isolation: worktree`로 실행한다.
+메인 트리에 직접 쓰기가 필요한 에이전트(`task-planner`, `doc-writer`)는 격리하지 않는다.
+
 ## 커밋 규칙
 
 - Conventional Commits 형식: `<type>(<scope>): <description>`
@@ -122,7 +139,11 @@
 ## 프로젝트 구조
 
 ```
-.claude/skills/                  # Claude Code 스킬 (자동 활성화)
-.claude/skills/_shared/          # 공유 리소스 (추론 템플릿, 명확화 프로토콜 등)
-.claude/context/                 # 복합 작업 문서 (plan, checklist, context)
+.claude/
+├── skills/                  # 스킬 정의 (자동 활성화)
+├── skills/_shared/          # 공유 리소스 (추론 템플릿, 스킬 라우팅 등)
+├── agents/                  # 서브에이전트 (자동 위임, worktree 격리)
+├── hooks/                   # 이벤트 Hook 스크립트
+├── settings.json            # Hook 등록, 권한 설정
+└── context/                 # 복합 작업 문서 (plan, checklist, context)
 ```

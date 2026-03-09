@@ -1,9 +1,13 @@
 ---
 name: doc-writer
-description: 코드 변경에 맞춰 문서를 생성하거나 갱신합니다. README, API 문서, 아키텍처 문서 등을 담당합니다.
+description: 코드 변경에 맞춰 문서를 생성하거나 갱신합니다. 기능 완료 후 자동으로 호출합니다.
 tools: Read, Grep, Glob, Edit, Write
 disallowedTools: Bash
 model: sonnet
+maxTurns: 15
+skills:
+  - document
+  - context-builder
 ---
 
 # 문서 작성자

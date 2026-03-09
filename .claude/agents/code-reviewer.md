@@ -1,9 +1,13 @@
 ---
 name: code-reviewer
-description: 코드 변경사항을 읽기 전용으로 리뷰합니다. 파일 수정 없이 발견 사항만 보고합니다.
+description: 코드 변경사항을 읽기 전용으로 리뷰합니다. 코드 수정 완료 후 자동으로 호출합니다.
 tools: Read, Grep, Glob, Bash
 disallowedTools: Edit, Write, NotebookEdit
 model: sonnet
+isolation: worktree
+maxTurns: 15
+skills:
+  - review
 ---
 
 # 코드 리뷰어
