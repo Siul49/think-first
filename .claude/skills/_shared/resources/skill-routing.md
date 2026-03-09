@@ -21,6 +21,9 @@
 | plan, breakdown, 기획, 스프린트 | **pm** | |
 | commit, 커밋, 변경사항 저장 | **commit** | |
 | verify, 검증, 구현 확인 | **verify-implementation** | |
+| 조사, 리서치, 비교, 어떤 게 좋을까, 방법 찾기 | **research** | 구현 전 선행 조사 |
+| 문서화, API 문서, README, 아키텍처 정리, CHANGELOG | **document** | 코드→문서 동기화 |
+| 컨텍스트 정리, 프로젝트 요약, 온보딩, CLAUDE.md 갱신 | **context-builder** | AI 세션 간 지식 전달 |
 | 스킬 관리, 검증 스킬 설정 | **manage-skills** | |
 
 ---
@@ -34,6 +37,8 @@
 | 버그 수정 후 리뷰 | debug → review |
 | 기능 추가 후 테스트 | pm → 해당 스킬 → qa |
 | 변경사항 리뷰 후 커밋 | review → commit |
+| 새 기술 도입 | research → pm → 구현 → qa |
+| 대규모 변경 후 문서화 | 구현 → document → context-builder |
 
 ---
 

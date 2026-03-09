@@ -34,6 +34,9 @@
 | `pm` | 기획, 태스크 분해, 스프린트 계획 |
 | `commit` | Conventional Commits 규격 커밋 |
 | `review` | diff 중심 빠른 코드 리뷰 |
+| `research` | 기술 조사, 선행 리서치, 라이브러리 비교 |
+| `document` | 문서화, API 문서, 아키텍처 문서 생성/갱신 |
+| `context-builder` | 프로젝트 컨텍스트 문서 자동 생성, CLAUDE.md 갱신 |
 
 ### 검증 및 관리 스킬 (수동 호출)
 
@@ -97,6 +100,8 @@
 | 모바일 앱 개발 | pm → (backend + mobile) 병렬 → qa |
 | 버그 수정 후 리뷰 | debug → qa |
 | 기능 추가 후 테스트 | pm → 해당 에이전트 → qa |
+| 새 기술 도입 | research → pm → 구현 → qa |
+| 대규모 변경 후 문서화 | 구현 → document → context-builder |
 
 ## 커밋 규칙
 
