@@ -2,7 +2,10 @@
   "name": "skill-pack",
   "version": "1.0.0",
   "description": "재사용 가능한 에이전트 스킬 번들. Claude Code 워크플로우를 표준화합니다.",
-  "author": "Siul49",
+  "author": {
+    "name": "Siul49",
+    "url": "https://github.com/Siul49"
+  },
   "license": "Apache-2.0",
   "homepage": "https://github.com/Siul49/skill-pack",
   "keywords": [
@@ -12,58 +15,5 @@
     "hooks",
     "workflow"
   ],
-  "components": {
-    "skills": [
-      "skills/backend",
-      "skills/frontend",
-      "skills/mobile",
-      "skills/debug",
-      "skills/qa",
-      "skills/pm",
-      "skills/commit",
-      "skills/review",
-      "skills/research",
-      "skills/document",
-      "skills/context-builder",
-      "skills/skill-creator",
-      "skills/mcp-builder",
-      "skills/webapp-testing",
-      "skills/verify-implementation",
-      "skills/manage-skills"
-    ],
-    "agents": [
-      "agents/code-reviewer.md",
-      "agents/task-planner.md",
-      "agents/test-runner.md",
-      "agents/doc-writer.md",
-      "agents/security-auditor.md"
-    ],
-    "hooks": "hooks/",
-    "shared": "skills/_shared/"
-  },
-  "settings": "settings.json",
-  "install": {
-    "copyFiles": [
-      {
-        "from": "skills/",
-        "to": ".claude/skills/"
-      },
-      {
-        "from": "agents/",
-        "to": ".claude/agents/"
-      },
-      {
-        "from": "hooks/",
-        "to": ".claude/hooks/"
-      },
-      {
-        "from": "settings.json",
-        "to": ".claude/settings.json"
-      }
-    ],
-    "postInstall": "chmod +x .claude/hooks/*.sh 2>/dev/null || true"
-  },
-  "compatibility": {
-    "claudeCode": ">=2.0.0"
-  }
+  "settings": {}
 }
