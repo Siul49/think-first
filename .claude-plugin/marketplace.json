@@ -11,7 +11,7 @@
       "name": "skill-pack",
       "description": "16개 스킬 + 5개 에이전트 + 10개 훅으로 구성된 Claude Code 워크플로우 번들",
       "version": "1.0.0",
-      "source": ".",
+      "source": "./",
       "tags": ["skills", "agents", "hooks", "workflow", "korean"]
     }
   ]
