@@ -5,8 +5,10 @@
 
 set -euo pipefail
 
-# 변경된 파일 확인 (staged + unstaged)
-CHANGED_FILES=$(git diff --name-only HEAD 2>/dev/null || true)
+# 커밋 안 된 변경만 확인 (staged + unstaged, 커밋 후에는 스킵)
+CHANGED_FILES=$(git diff --name-only 2>/dev/null || true)
+STAGED_FILES=$(git diff --cached --name-only 2>/dev/null || true)
+CHANGED_FILES=$(printf "%s\n%s" "$CHANGED_FILES" "$STAGED_FILES" | sort -u | grep -v '^$' || true)
 
 if [[ -z "$CHANGED_FILES" ]]; then
   exit 0
