@@ -28,16 +28,41 @@
           {
             "type": "command",
             "command": "bash .claude/hooks/auto-format.sh"
+          },
+          {
+            "type": "prompt",
+            "prompt": "방금 수정된 파일이 인증(auth), 권한(authorization), 입력 검증(validation), 암호화, 세션 관리 등 보안 관련 코드인가? 파일 경로와 변경 내용을 확인하라. 보안에 영향을 줄 수 있으면 'yes', 아니면 'no'로 답하라.",
+            "statusMessage": "보안 변경 감지 중..."
           }
         ]
       }
     ],
-    "Stop": [
+    "PostToolUseFailure": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/hooks/checklist-reminder.sh"
+            "command": "bash .claude/hooks/tool-failure-handler.sh"
+          }
+        ]
+      }
+    ],
+    "InstructionsLoaded": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/instructions-validator.sh"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/subagent-start-logger.sh"
           }
         ]
       }
@@ -48,6 +73,41 @@
           {
             "type": "command",
             "command": "bash .claude/hooks/subagent-post-process.sh"
+          }
+        ]
+      }
+    ],
+    "TaskCompleted": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/task-completed-reporter.sh"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/pre-compact-saver.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/checklist-reminder.sh"
+          },
+          {
+            "type": "agent",
+            "prompt": "변경된 파일의 코드 품질을 빠르게 점검하라. git diff --name-only HEAD로 변경 파일을 확인하고, 각 파일에서 중복 코드, 미사용 임포트, 명백한 로직 오류가 있는지 검토하라. 발견 사항이 있으면 간결하게 보고하고, 없으면 '품질 이상 없음'으로 응답하라.",
+            "statusMessage": "코드 품질 점검 중..."
           }
         ]
       }

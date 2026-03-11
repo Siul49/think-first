@@ -5,6 +5,8 @@ tools: Read, Grep, Glob, Edit, Write
 disallowedTools: Bash
 model: sonnet
 maxTurns: 15
+memory:
+  - project
 skills:
   - document
   - context-builder

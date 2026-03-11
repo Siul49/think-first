@@ -6,6 +6,8 @@ disallowedTools: Edit, Write, NotebookEdit
 model: sonnet
 isolation: worktree
 maxTurns: 15
+memory:
+  - project
 skills:
   - review
 ---

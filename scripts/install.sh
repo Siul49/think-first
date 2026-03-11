@@ -19,10 +19,12 @@ if [[ -z "$TARGET" || -z "$MODE" ]]; then
   echo "사용법:"
   echo "  bash scripts/install.sh <target-path> --claude [--with-config]"
   echo "  bash scripts/install.sh <target-path> --codex  [--with-config]"
+  echo "  bash scripts/install.sh <target-path> --plugin"
   echo ""
   echo "모드:"
   echo "  --claude        Claude Code용으로 설치 (.claude/skills/)"
   echo "  --codex         Codex용으로 설치 (.agent/skills/)"
+  echo "  --plugin        플러그인 형식으로 설치 (.claude-plugin/ + .claude/)"
   echo ""
   echo "옵션:"
   echo "  --with-config   프로젝트 설정 파일도 함께 복사 (기존 파일 덮어쓰지 않음)"
@@ -33,6 +35,7 @@ if [[ -z "$TARGET" || -z "$MODE" ]]; then
   echo "  bash scripts/install.sh ~/Dev/my-project --claude"
   echo "  bash scripts/install.sh ~/Dev/my-project --claude --with-config"
   echo "  bash scripts/install.sh ~/Dev/my-project --codex --with-config"
+  echo "  bash scripts/install.sh ~/Dev/my-project --plugin"
   exit 1
 fi
 
@@ -65,8 +68,20 @@ case "$MODE" in
     IGNORE_PATTERNS=(".agent/context/")
     echo "[install] 모드: Codex"
     ;;
+  --plugin)
+    BASE_DIR=".claude"
+    SKILLS_DIR=".claude/skills"
+    AGENTS_DIR=".claude/agents"
+    HOOKS_DIR=".claude/hooks"
+    CONTEXT_DIR=".claude/context"
+    CONFIG_FILE="CLAUDE.md"
+    SETTINGS_FILE=".claude/settings.json"
+    PLUGIN_DIR=".claude-plugin"
+    IGNORE_PATTERNS=(".claude/context/" ".claude/settings.local.json")
+    echo "[install] 모드: Plugin"
+    ;;
   *)
-    echo "[error] 알 수 없는 모드: $MODE (--claude 또는 --codex를 사용하세요)"
+    echo "[error] 알 수 없는 모드: $MODE (--claude, --codex 또는 --plugin을 사용하세요)"
     exit 1
     ;;
 esac
@@ -176,6 +191,14 @@ if [[ -f "$TARGET/.gitignore" ]]; then
     done
     echo "[install] .gitignore 업데이트 → 완료"
   fi
+fi
+
+# --- 8.5. 플러그인 메타데이터 복사 (--plugin 모드) ---
+if [[ "$MODE" == "--plugin" && -d "$PACK_ROOT/.claude-plugin" ]]; then
+  echo "[install] 플러그인 메타데이터 복사 중..."
+  mkdir -p "$TARGET/$PLUGIN_DIR"
+  cp "$PACK_ROOT/.claude-plugin/plugin.json" "$TARGET/$PLUGIN_DIR/"
+  echo "[install] $PLUGIN_DIR/plugin.json → 완료"
 fi
 
 # --- 완료 ---

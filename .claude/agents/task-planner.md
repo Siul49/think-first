@@ -5,8 +5,11 @@ tools: Read, Grep, Glob, Write
 disallowedTools: Edit, Bash
 model: inherit
 maxTurns: 20
+memory:
+  - project
 skills:
   - pm
+  - research
 ---
 
 # 태스크 플래너

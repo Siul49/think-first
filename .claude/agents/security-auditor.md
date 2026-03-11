@@ -6,6 +6,8 @@ disallowedTools: Edit, Write
 model: sonnet
 isolation: worktree
 maxTurns: 10
+memory:
+  - project
 skills:
   - qa
 ---

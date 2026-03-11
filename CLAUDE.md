@@ -37,12 +37,18 @@
 | `research` | 기술 조사, 선행 리서치, 라이브러리 비교 |
 | `document` | 문서화, API 문서, 아키텍처 문서 생성/갱신 |
 | `context-builder` | 프로젝트 컨텍스트 문서 자동 생성, CLAUDE.md 갱신 |
+| `skill-creator` | 새 스킬 작성 가이드, SKILL.md 표준 형식 강제 |
+| `mcp-builder` | MCP 서버/도구 개발, Model Context Protocol 연동 |
+| `webapp-testing` | E2E/통합/컴포넌트 테스트 전략 및 작성 |
 
 ### 검증 및 관리 스킬 (수동 호출)
 
 | 스킬 | 용도 |
 |------|------|
 | `verify-implementation` | 등록된 verify 스킬을 순차 실행, 통합 검증 보고서 생성 |
+| `verify-api-schema` | API 라우터, DTO, request/response 모델, API 계약 정합성 검증 |
+| `verify-business-logic` | Service 레이어, 스케줄러, 배치, 도메인 로직 정합성 검증 |
+| `verify-database-layer` | Repository, CRUD 경로, 스키마 가정, 쿼리 안전성 검증 |
 | `manage-skills` | 변경사항 분석 → 검증 스킬 누락 탐지 → 자동 생성/업데이트 |
 
 ## 작업 실행 프로토콜
@@ -115,6 +121,15 @@
 | 기능 완료 후 | `doc-writer` | README, API 문서 갱신 |
 | 인증/권한/입력검증 코드 변경 시 | `security-auditor` | worktree 격리, 보안 취약점 스캔 |
 
+### 서브에이전트 기능
+
+| 필드 | 설명 |
+|------|------|
+| `memory: [project]` | 프로젝트별 세션 간 학습 지속 (MEMORY.md) |
+| `skills: [스킬명]` | 에이전트 시작 시 스킬 프리로드 |
+| `isolation: worktree` | Git worktree 격리 실행 |
+| `model: sonnet/haiku/inherit` | 에이전트별 모델 지정 |
+
 ### Worktree 격리 전략
 
 읽기 전용 에이전트(`code-reviewer`, `test-runner`, `security-auditor`)는 `isolation: worktree`로 실행한다.
@@ -136,6 +151,23 @@
 - 용어 통일: workflow→워크플로우, verify→검증, review→리뷰, checklist→체크리스트
 - 상세 가이드: `.claude/korean-docs-style-guide.md`
 
+## Hooks
+
+10개 이벤트에 command 핸들러 등록. `settings.json`에서 관리.
+
+| 이벤트 | 훅 | 용도 |
+|--------|-----|------|
+| `SessionStart` | `session-context-loader.sh` | 프로젝트 컨텍스트 동적 로딩 |
+| `PreToolUse` | `block-dangerous-commands.sh` | 위험 명령 차단 (Bash) |
+| `PostToolUse` | `auto-format.sh` | 코드 자동 포맷 (Edit/Write) |
+| `PostToolUseFailure` | `tool-failure-handler.sh` | 도구 실패 시 디버그 힌트 |
+| `InstructionsLoaded` | `instructions-validator.sh` | CLAUDE.md 유효성 검증 |
+| `SubagentStart` | `subagent-start-logger.sh` | 서브에이전트 시작 로깅 |
+| `SubagentStop` | `subagent-post-process.sh` | 서브에이전트 후처리 |
+| `TaskCompleted` | `task-completed-reporter.sh` | 태스크 완료 시 진행률 보고 |
+| `PreCompact` | `pre-compact-saver.sh` | 컨텍스트 압축 전 상태 보존 |
+| `Stop` | `checklist-reminder.sh` | 응답 완료 후 체크리스트 리마인더 |
+
 ## 프로젝트 구조
 
 ```
@@ -143,7 +175,9 @@
 ├── skills/                  # 스킬 정의 (자동 활성화)
 ├── skills/_shared/          # 공유 리소스 (추론 템플릿, 스킬 라우팅 등)
 ├── agents/                  # 서브에이전트 (자동 위임, worktree 격리)
-├── hooks/                   # 이벤트 Hook 스크립트
+├── hooks/                   # 이벤트 Hook 스크립트 (10개 이벤트)
 ├── settings.json            # Hook 등록, 권한 설정
 └── context/                 # 복합 작업 문서 (plan, checklist, context)
+.claude-plugin/
+└── plugin.json              # 플러그인 메타데이터 (배포용)
 ```

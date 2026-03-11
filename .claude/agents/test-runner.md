@@ -6,6 +6,10 @@ disallowedTools: Edit, Write
 model: haiku
 isolation: worktree
 maxTurns: 10
+memory:
+  - project
+skills:
+  - webapp-testing
 ---
 
 # 테스트 러너
