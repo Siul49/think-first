@@ -12,7 +12,7 @@ skill-pack은 이 설정을 **한 번 만들고, 어디서든 재사용**할 수
 - **5개 서브에이전트 자동 위임**: 코드 리뷰, 테스트, 보안 감사를 독립 에이전트가 worktree 격리 환경에서 처리
 - **10개 이벤트 훅 + 3가지 핸들러**: command, prompt(LLM 판단), agent(에이전트 분석)으로 보안 감지, 품질 점검, 컨텍스트 보존까지 자동화
 - **복합 작업 자동 관리**: 큰 작업은 계획서 → 체크리스트 → 검증 → 보고까지 워크플로우가 잡혀있습니다
-- **플러그인 한 줄 설치**: `/plugin install`이나 스크립트 한 줄로 어떤 프로젝트든 적용 가능
+- **스크립트 한 줄 설치**: 어떤 프로젝트든 `install.sh` 한 줄로 적용 가능
 
 ## 포함된 스킬 (16개)
 
@@ -44,49 +44,30 @@ skill-pack은 이 설정을 **한 번 만들고, 어디서든 재사용**할 수
 
 ## 설치
 
-### 방법 1: 플러그인으로 설치 (권장)
-
-프로젝트의 `.claude/settings.json`에 추가:
-
-```json
-{
-  "extraKnownMarketplaces": {
-    "skill-pack": {
-      "source": {
-        "source": "github",
-        "repo": "Siul49/skill-pack",
-        "ref": "claude"
-      },
-      "autoUpdate": true
-    }
-  }
-}
-```
-
-그 후 Claude Code에서:
-
-```
-/plugin install skill-pack
-```
-
-### 방법 2: 스크립트로 설치
+### 방법 1: 스크립트로 설치 (권장)
 
 ```bash
-git clone -b claude https://github.com/Siul49/skill-pack.git
+git clone https://github.com/Siul49/skill-pack.git
 bash skill-pack/scripts/install.sh /path/to/your-project --claude --with-config
-
-# 플러그인 메타데이터 포함
-bash skill-pack/scripts/install.sh /path/to/your-project --plugin
 ```
 
-### 방법 3: 수동 설치
+### 방법 2: 수동 설치
 
 ```bash
-git clone -b claude https://github.com/Siul49/skill-pack.git
+git clone https://github.com/Siul49/skill-pack.git
 cp -r skill-pack/.claude/skills/ your-project/.claude/skills/
 cp -r skill-pack/.claude/agents/ your-project/.claude/agents/
 cp -r skill-pack/.claude/hooks/ your-project/.claude/hooks/
 cp skill-pack/.claude/settings.json your-project/.claude/settings.json
+```
+
+### 방법 3: 플러그인으로 설치 (실험적)
+
+> Claude Code 플러그인 시스템이 아직 안정화되지 않아 설치가 불완전할 수 있습니다.
+
+```
+/plugin marketplace add Siul49/skill-pack
+/plugin install skill-pack
 ```
 
 ### 설치 후 할 일
@@ -99,16 +80,12 @@ cp skill-pack/.claude/settings.json your-project/.claude/settings.json
 
 ## 업데이트
 
-플러그인 설치 시 `autoUpdate: true`이면 세션 시작 시 자동 업데이트됩니다.
-
-스크립트 설치의 경우:
-
 ```bash
-cd skill-pack && git pull origin claude
+cd skill-pack && git pull
 bash scripts/install.sh /path/to/your-project --claude
 ```
 
-스킬만 덮어쓰고 `CLAUDE.md`는 건드리지 않습니다.
+스킬/에이전트/훅만 덮어쓰고 `CLAUDE.md`는 건드리지 않습니다.
 
 ## 구조
 
