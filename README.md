@@ -75,6 +75,25 @@ bash scripts/install.sh /path/to/your-project --claude
 
 스킬/에이전트/훅만 덮어쓰고 `CLAUDE.md`는 건드리지 않습니다.
 
+## Hooks (이벤트 자동화)
+
+`settings.json`에 등록된 Hook은 AI와 무관하게 **시스템이 자동 실행**합니다.
+
+| 이벤트 | 훅 | 동작 |
+|--------|-----|------|
+| `SessionStart` | `session-context-loader.sh` | 프로젝트 컨텍스트 동적 로딩 |
+| `PreToolUse(Bash)` | `block-dangerous-commands.sh` | 위험 명령 차단 |
+| `PostToolUse(Edit\|Write)` | `auto-format.sh` | 코드 자동 포맷 |
+| `PostToolUse(Edit\|Write)` | `security-change-detector.sh` | 보안 관련 파일 변경 감지 |
+| `PostToolUseFailure` | `tool-failure-handler.sh` | 도구 실패 시 디버그 힌트 |
+| `InstructionsLoaded` | `instructions-validator.sh` | CLAUDE.md 유효성 검증 |
+| `SubagentStart` | `subagent-start-logger.sh` | 서브에이전트 시작 로깅 |
+| `SubagentStop` | `subagent-post-process.sh` | 서브에이전트 후처리 |
+| `TaskCompleted` | `task-completed-reporter.sh` | 태스크 완료 시 진행률 보고 |
+| `PreCompact` | `pre-compact-saver.sh` | 컨텍스트 압축 전 상태 보존 |
+| `Stop` | `checklist-reminder.sh` | 응답 완료 후 체크리스트 리마인더 |
+| `Stop` | `code-quality-gate.sh` | 소스 코드 변경 시 품질 점검 권장 |
+
 ## 프로젝트 구조
 
 ```
