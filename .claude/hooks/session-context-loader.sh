@@ -36,7 +36,9 @@ fi
 
 CONTEXT="$CONTEXT
 - 최근 커밋:
-$RECENT_COMMITS"
+$RECENT_COMMITS
+
+[필수] thinking-cycle 스킬을 모든 인터랙션에서 최우선 활성화할 것. 도메인 스킬보다 먼저 로드."
 
 echo "$CONTEXT" >&2
 exit 0

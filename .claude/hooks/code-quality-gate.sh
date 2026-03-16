@@ -21,6 +21,14 @@ if [[ -z "$CODE_FILES" ]]; then
   exit 0
 fi
 
+# 이미 보고한 파일 세트와 동일하면 스킵 (반복 경고 방지)
+REPORT_HASH=$(echo "$CODE_FILES" | md5sum | cut -d' ' -f1)
+HASH_FILE="/tmp/.code-quality-gate-last-hash"
+if [[ -f "$HASH_FILE" ]] && [[ "$(cat "$HASH_FILE")" == "$REPORT_HASH" ]]; then
+  exit 0
+fi
+echo "$REPORT_HASH" > "$HASH_FILE"
+
 FILE_COUNT=$(echo "$CODE_FILES" | wc -l | tr -d ' ')
 
 {
