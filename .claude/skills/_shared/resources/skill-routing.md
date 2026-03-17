@@ -10,7 +10,7 @@
 도메인 스킬 매칭 여부와 무관하게 TC Phase 0(질문) → Phase 1(결정)을 수행한 후 도메인 스킬로 진입한다.
 
 ```text
-[사용자 요청] → [thinking-cycle] Phase 0/1 → [도메인 스킬 매칭] → Phase 2 실행 → [thinking-cycle] Phase 3/4
+[사용자 요청] → [thinking-cycle] Phase 0/1 → [도메인 스킬 매칭] → Phase 2 실행 → [code-study] Phase 3 → [thinking-cycle] Phase 4
 ```
 
 ---
