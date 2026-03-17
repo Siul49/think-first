@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# skill-pack 설치 스크립트
+# think-first 설치 스크립트
 # 사용법: bash scripts/install.sh /path/to/target-project --claude [--with-config]
 #         bash scripts/install.sh /path/to/target-project --codex  [--with-config]
 
@@ -14,7 +14,7 @@ WITH_CONFIG="${3:-}"
 
 # --- 사용법 ---
 if [[ -z "$TARGET" || -z "$MODE" ]]; then
-  echo "skill-pack 설치 스크립트"
+  echo "think-first 설치 스크립트"
   echo ""
   echo "사용법:"
   echo "  bash scripts/install.sh <target-path> --claude [--with-config]"
@@ -106,8 +106,8 @@ if [[ "$WITH_CONFIG" == "--with-config" ]]; then
     # Claude Code: CLAUDE.md 복사
     if [[ -f "$TARGET/CLAUDE.md" ]]; then
       echo "[install] CLAUDE.md가 이미 존재합니다. 덮어쓰지 않습니다."
-      cp "$PACK_ROOT/CLAUDE.md" "$TARGET/CLAUDE.md.skill-pack-template"
-      echo "[install] 템플릿을 CLAUDE.md.skill-pack-template로 저장합니다."
+      cp "$PACK_ROOT/CLAUDE.md" "$TARGET/CLAUDE.md.think-first-template"
+      echo "[install] 템플릿을 CLAUDE.md.think-first-template로 저장합니다."
     else
       cp "$PACK_ROOT/CLAUDE.md" "$TARGET/CLAUDE.md"
       echo "[install] CLAUDE.md → 완료 (프로젝트에 맞게 수정하세요)"
@@ -116,8 +116,8 @@ if [[ "$WITH_CONFIG" == "--with-config" ]]; then
     # Codex: agents.md 복사 (CLAUDE.md를 agents.md로 변환)
     if [[ -f "$TARGET/agents.md" ]]; then
       echo "[install] agents.md가 이미 존재합니다. 덮어쓰지 않습니다."
-      cp "$PACK_ROOT/CLAUDE.md" "$TARGET/agents.md.skill-pack-template"
-      echo "[install] 템플릿을 agents.md.skill-pack-template로 저장합니다."
+      cp "$PACK_ROOT/CLAUDE.md" "$TARGET/agents.md.think-first-template"
+      echo "[install] 템플릿을 agents.md.think-first-template로 저장합니다."
     else
       # CLAUDE.md 내용에서 경로만 치환하여 agents.md로 저장
       sed 's|\.claude/skills/|.agent/skills/|g; s|\.claude/context/|.agent/context/|g' \
@@ -151,11 +151,11 @@ if [[ -f "$PACK_ROOT/.claude/settings.json" ]]; then
     echo "[install] $SETTINGS_FILE 이미 존재합니다. 덮어쓰지 않습니다."
     if [[ "$MODE" == "--codex" ]]; then
       sed 's|\.claude/hooks/|.agent/hooks/|g; s|\.claude/context/|.agent/context/|g' \
-        "$PACK_ROOT/.claude/settings.json" > "$TARGET/${SETTINGS_FILE}.skill-pack-template"
+        "$PACK_ROOT/.claude/settings.json" > "$TARGET/${SETTINGS_FILE}.think-first-template"
     else
-      cp "$PACK_ROOT/.claude/settings.json" "$TARGET/${SETTINGS_FILE}.skill-pack-template"
+      cp "$PACK_ROOT/.claude/settings.json" "$TARGET/${SETTINGS_FILE}.think-first-template"
     fi
-    echo "[install] 템플릿을 ${SETTINGS_FILE}.skill-pack-template로 저장합니다."
+    echo "[install] 템플릿을 ${SETTINGS_FILE}.think-first-template로 저장합니다."
   else
     if [[ "$MODE" == "--codex" ]]; then
       sed 's|\.claude/hooks/|.agent/hooks/|g; s|\.claude/context/|.agent/context/|g' \
@@ -189,7 +189,7 @@ if [[ -f "$TARGET/.gitignore" ]]; then
 
   if [[ "$NEEDS_UPDATE" == "true" ]]; then
     echo "" >> "$TARGET/.gitignore"
-    echo "# skill-pack runtime" >> "$TARGET/.gitignore"
+    echo "# think-first runtime" >> "$TARGET/.gitignore"
     for pattern in "${IGNORE_PATTERNS[@]}"; do
       if ! grep -q "$pattern" "$TARGET/.gitignore" 2>/dev/null; then
         echo "$pattern" >> "$TARGET/.gitignore"

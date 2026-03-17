@@ -1,18 +1,18 @@
 {
   "$schema": "https://json.schemastore.org/claude-plugin-marketplace.json",
-  "name": "skill-pack",
-  "description": "재사용 가능한 에이전트 스킬 번들. Claude Code 워크플로우를 표준화합니다.",
+  "name": "think-first",
+  "description": "사고 강제 에이전트 스킬 번들. AI 시대에 생각하는 개발자로 성장하도록 돕습니다.",
   "owner": {
     "name": "Siul49",
     "url": "https://github.com/Siul49"
   },
   "plugins": [
     {
-      "name": "skill-pack",
-      "description": "16개 스킬 + 5개 에이전트 + 10개 훅으로 구성된 Claude Code 워크플로우 번들",
+      "name": "think-first",
+      "description": "16개 스킬 + 5개 에이전트 + 10개 훅으로 구성된 사고 강제 Claude Code 번들",
       "version": "1.0.0",
       "source": "./",
-      "tags": ["skills", "agents", "hooks", "workflow", "korean"]
+      "tags": ["skills", "agents", "hooks", "thinking", "learning", "korean"]
     }
   ]
 }

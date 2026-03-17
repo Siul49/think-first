@@ -1,5 +1,5 @@
 {
-  "name": "skill-pack",
+  "name": "think-first",
   "version": "1.0.0",
   "description": "사고 강제 에이전트 스킬 번들. 질문→결정→실행→회고 사이클로 사용자의 사고력을 강화합니다.",
   "author": {
@@ -7,13 +7,14 @@
     "url": "https://github.com/Siul49"
   },
   "license": "Apache-2.0",
-  "homepage": "https://github.com/Siul49/skill-pack",
+  "homepage": "https://github.com/Siul49/think-first",
   "keywords": [
     "claude-code",
+    "thinking",
+    "learning",
     "skills",
     "agents",
-    "hooks",
-    "workflow"
+    "hooks"
   ],
   "settings": {}
 }
