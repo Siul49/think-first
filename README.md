@@ -23,7 +23,7 @@
 
 ## ThinkFirst는 뭔가요?
 
-Claude Code 위에서 동작하는 **사고 강제 에이전트 스킬 번들**입니다.
+Claude Code와 구글 Antigravity 위에서 동작하는 **사고 강제 에이전트 스킬 번들**입니다.
 
 AI에게 작업을 시키면, 바로 실행하지 않습니다. 먼저 **질문**합니다. 왜 이 방식인지, 다른 선택지는 없는지, 트레이드오프는 뭔지. 당신이 생각하고 결정한 이후에야 실행합니다. 작업이 끝나면 **회고**를 통해 배운 것을 기록합니다.
 
@@ -161,7 +161,9 @@ ThinkFirst의 핵심은 이 두 가지의 결합입니다.
 
 ```bash
 git clone https://github.com/Siul49/think-first.git
-bash think-first/scripts/install.sh /path/to/your-project --claude --with-config
+bash think-first/scripts/install.sh /path/to/your-project --antigravity --with-config
+# 또는 Claude Code 사용시:
+# bash think-first/scripts/install.sh /path/to/your-project --claude --with-config
 ```
 
 ### 수동 설치
