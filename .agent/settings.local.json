@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git checkout main)",
+      "Bash(git checkout -b antigravity/migrate-to-antigravity-code)",
+      "Bash(git stash)",
+      "Bash(for f:*)",
+      "Bash(do)",
+      "Bash(sed -i 's/## Step -1: Thinking Cycle \\(질문 + 결정\\)/## Step -1: Thinking Cycle \\(이해도 점검 + 질문 + 결정\\)/' \"$f\")",
+      "Bash(sed -i '/## Step -1: Thinking Cycle \\(이해도 점검 + 질문 + 결정\\)/,/^## /{:*)",
+      "Bash(sed -i 's/## Final Step: 회고 \\(Thinking Cycle Phase 3\\)/## Pre-Final Step: 코드 리딩 \\(Thinking Cycle Phase 3\\)\\\\n1. `..\\\\/code-reading\\\\/SKILL.md` 사후 점검 수행\\\\n2. 변경된 코드에 대해 레벨 C\\(기본\\) 질문 → 사용자 답변 평가\\\\n3. 코드 변경이 없는 작업은 생략\\\\n\\\\n## Final Step: 회고 \\(Thinking Cycle Phase 4\\)/' \"$f\")",
+      "Bash(sed -i 's/1\\\\. `\\\\.\\\\.\\\\/_shared\\\\/resources\\\\/thinking-cycle\\\\.md` Phase 3 수행/1. `\\\\.\\\\.\\\\/_shared\\\\/resources\\\\/thinking-cycle.md` Phase 4 수행/' \"$f\")",
+      "Bash(echo \"Updated: $f\")",
+      "Bash(done)",
+      "Bash(git commit:*)"
+    ],
+    "defaultMode": "bypassPermissions"
+  }
+}
